@@ -82,51 +82,160 @@
             });
         }
 
-        let currentSlideIndex = 0;
-        function scrollToSlide(index) {
+        let currentSlideIndex = 1;
+        let isTransitioning = false;
+        let isTouching = false;
+
+        function scrollToSlide(index, instant = false) {
             const container = document.getElementById('slider-container');
-            if (container && container.children[index]) {
-                const item = container.children[index];
-                const targetLeft = item.offsetLeft - container.offsetLeft - (container.offsetWidth - item.offsetWidth) / 2;
-                container.scrollTo({ left: targetLeft, behavior: 'smooth' });
-                currentSlideIndex = index;
+            if (container) {
+                const slides = container.querySelectorAll('.slide-item');
+                if (slides && slides[index]) {
+                    const item = slides[index];
+                    const targetLeft = item.offsetLeft - container.offsetLeft - (container.offsetWidth - item.offsetWidth) / 2;
+                    container.scrollTo({ left: targetLeft, behavior: instant ? 'auto' : 'smooth' });
+                    currentSlideIndex = index;
+                    updatePagination(index, slides.length);
+                }
+            }
+        }
+
+        function updatePagination(index, totalSlides) {
+            const dots = document.querySelectorAll('.pagination-dot');
+            let realIndex = index - 1;
+            if (index === 0) realIndex = totalSlides - 3;
+            if (index === totalSlides - 1) realIndex = 0;
+
+            dots.forEach((dot, idx) => {
+                if (idx === realIndex) {
+                    dot.className = "w-8 h-2.5 rounded-full bg-[#f97316] transition-all duration-300 pagination-dot cursor-pointer";
+                } else {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer";
+                }
+            });
+        }
+
+        function checkLoop(totalSlides) {
+            if (isTransitioning) return;
+            const container = document.getElementById('slider-container');
+            if (!container) return;
+
+            if (currentSlideIndex === 0) {
+                isTransitioning = true;
+                setTimeout(() => {
+                    scrollToSlide(totalSlides - 2, true);
+                    isTransitioning = false;
+                }, 350);
+            } else if (currentSlideIndex === totalSlides - 1) {
+                isTransitioning = true;
+                setTimeout(() => {
+                    scrollToSlide(1, true);
+                    isTransitioning = false;
+                }, 350);
             }
         }
 
         function nextSlide() {
+            if (isTransitioning) return;
             const container = document.getElementById('slider-container');
-            if (container) {
-                if (currentSlideIndex < container.children.length - 1) {
-                    scrollToSlide(currentSlideIndex + 1);
-                } else {
-                    scrollToSlide(0);
-                }
+            const slides = container.querySelectorAll('.slide-item');
+            if (currentSlideIndex < slides.length - 1) {
+                scrollToSlide(currentSlideIndex + 1);
+                setTimeout(() => checkLoop(slides.length), 350);
             }
         }
 
         function prevSlide() {
+            if (isTransitioning) return;
             const container = document.getElementById('slider-container');
-            if (container) {
-                if (currentSlideIndex > 0) {
-                    scrollToSlide(currentSlideIndex - 1);
-                } else {
-                    scrollToSlide(container.children.length - 1);
-                }
+            const slides = container.querySelectorAll('.slide-item');
+            if (currentSlideIndex > 0) {
+                scrollToSlide(currentSlideIndex - 1);
+                setTimeout(() => checkLoop(slides.length), 350);
             }
         }
 
         function initSlider() {
             const container = document.getElementById('slider-container');
-            const dots = document.querySelectorAll('.pagination-dot');
-            if (!container || dots.length === 0) return;
+            if (!container) return;
+
+            const originalSlides = Array.from(container.querySelectorAll('.slide-item'));
+            if (originalSlides.length < 2) return;
+
+            if (container.querySelectorAll('.clone').length === 0) {
+                const firstClone = originalSlides[0].cloneNode(true);
+                const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+
+                firstClone.classList.add('clone', 'pointer-events-none');
+                lastClone.classList.add('clone', 'pointer-events-none');
+
+                container.insertBefore(lastClone, originalSlides[0]);
+                container.appendChild(firstClone);
+            }
+
+            setTimeout(() => {
+                scrollToSlide(1, true);
+            }, 50);
+
+            let startTouchX = 0;
+            let startScrollLeft = 0;
+            let startDragIndex = 1;
+            let isDragging = false;
+
+            container.addEventListener('touchstart', (e) => { 
+                if (isTransitioning) return;
+                isDragging = true;
+                startTouchX = e.touches[0].clientX;
+                startScrollLeft = container.scrollLeft;
+                startDragIndex = currentSlideIndex;
+            }, { passive: true });
+
+            container.addEventListener('touchmove', (e) => {
+                if (!isDragging || isTransitioning) return;
+                const currentTouchX = e.touches[0].clientX;
+                const currentTouchY = e.touches[0].clientY;
+                const walkX = Math.abs(currentTouchX - startTouchX);
+                const walkY = Math.abs(currentTouchY - startTouchY);
+
+                if (walkX > walkY && walkX > 5) {
+                    if (e.cancelable) e.preventDefault();
+                }
+
+                const walk = startTouchX - currentTouchX;
+                container.scrollLeft = startScrollLeft + walk;
+            }, { passive: false });
+
+            container.addEventListener('touchend', (e) => { 
+                if (!isDragging || isTransitioning) return;
+                isDragging = false;
+                const endTouchX = e.changedTouches[0].clientX;
+                const diffX = startTouchX - endTouchX;
+                const slides = container.querySelectorAll('.slide-item');
+                
+                let targetIndex = startDragIndex;
+                if (diffX > 35) {
+                    targetIndex = startDragIndex + 1;
+                } else if (diffX < -35) {
+                    targetIndex = startDragIndex - 1;
+                }
+                
+                targetIndex = Math.max(0, Math.min(slides.length - 1, targetIndex));
+                scrollToSlide(targetIndex);
+
+                setTimeout(() => {
+                    checkLoop(slides.length);
+                }, 350);
+            }, { passive: true });
 
             container.addEventListener('scroll', () => {
+                if (isTransitioning || isDragging) return;
+                const slides = container.querySelectorAll('.slide-item');
                 let minDistance = Infinity;
-                let activeIndex = 0;
+                let activeIndex = currentSlideIndex;
                 const containerCenter = container.scrollLeft + container.offsetWidth / 2;
                 
-                for (let i = 0; i < container.children.length; i++) {
-                    const child = container.children[i];
+                for (let i = 0; i < slides.length; i++) {
+                    const child = slides[i];
                     const childCenter = (child.offsetLeft - container.offsetLeft) + child.offsetWidth / 2;
                     const dist = Math.abs(childCenter - containerCenter);
                     if (dist < minDistance) {
@@ -135,46 +244,7 @@
                     }
                 }
                 currentSlideIndex = activeIndex;
-                
-                dots.forEach((dot, index) => {
-                    if (index === activeIndex) {
-                        dot.className = "w-8 h-2.5 rounded-full bg-primary transition-all duration-300 pagination-dot cursor-pointer";
-                    } else {
-                        dot.className = "w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 pagination-dot cursor-pointer";
-                    }
-                });
-            });
-
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            container.addEventListener('mousedown', (e) => {
-                isDown = true;
-                container.style.scrollSnapType = 'none';
-                container.classList.add('cursor-grabbing');
-                startX = e.pageX - container.offsetLeft;
-                scrollLeft = container.scrollLeft;
-            });
-            container.addEventListener('mouseleave', () => {
-                if (!isDown) return;
-                isDown = false;
-                container.style.scrollSnapType = '';
-                container.classList.remove('cursor-grabbing');
-                scrollToSlide(currentSlideIndex);
-            });
-            container.addEventListener('mouseup', () => {
-                if (!isDown) return;
-                isDown = false;
-                container.style.scrollSnapType = '';
-                container.classList.remove('cursor-grabbing');
-                scrollToSlide(currentSlideIndex);
-            });
-            container.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - container.offsetLeft;
-                const walk = (x - startX) * 1.5;
-                container.scrollLeft = scrollLeft - walk;
+                updatePagination(activeIndex, slides.length);
             });
         }
 
@@ -217,7 +287,7 @@
                 <button id="lang-btn-es" onclick="switchLanguage('es')" class="px-2.5 py-1 rounded-full bg-earth-dark text-white font-extrabold shadow-md transition-all text-xs tracking-wider cursor-pointer">ES</button>
                 <button id="lang-btn-en" onclick="switchLanguage('en')" class="px-2.5 py-1 rounded-full text-gray-600 hover:text-earth-dark font-bold transition-all text-xs tracking-wider bg-transparent cursor-pointer">EN</button>
             </div>
-            <a href="#contacto" class="flex bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-black transition-transform transform hover:scale-105 shadow-2xl items-center gap-1.5 group border border-orange-400 cursor-pointer">
+            <a href="#contacto" class="flex bg-[#f97316] hover:bg-[#ea580c] text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-black transition-all transform hover:scale-105 shadow-2xl items-center gap-1.5 group border border-white/20 cursor-pointer">
                 <span><span class="lang-es">Cotizar Gratis</span><span class="lang-en">Free Quote</span></span>
                 <span class="material-symbols-outlined text-xs sm:text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
             </a>
@@ -238,9 +308,9 @@
                 <span class="lang-en">Fast Financing Available</span>
             </div>
             
-            <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 tracking-tight drop-shadow-lg">
-                <span class="lang-es">Transforma tu Casa Sin Estrés. <span class="text-primary">Págalo a tu Ritmo.</span></span>
-                <span class="lang-en">Transform Your Home Stress-Free. <span class="text-primary">Pay at your Pace.</span></span>
+            <h1 class="font-heading text-[37px] sm:text-5xl lg:text-6xl font-black leading-[1.2] mb-6 tracking-tight drop-shadow-lg">
+                <span class="lang-es"><span class="block">Transforma tu</span><span class="block">Casa sin Estrés.</span><span class="text-primary block whitespace-nowrap">Págalo a tu Ritmo.</span></span>
+                <span class="lang-en"><span class="block">Transform Your</span><span class="block">Home Stress-Free.</span><span class="text-primary block whitespace-nowrap">Pay at your Pace.</span></span>
             </h1>
             
             <p class="text-lg text-gray-200 mb-8 font-medium leading-relaxed max-w-xl">
@@ -292,7 +362,7 @@
                             <option value="pintura" data-es-text="Pintura Int/Ext" data-en-text="Int/Ext Painting">Pintura Int/Ext</option>
                         </select>
                     </div>
-                    <button class="w-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-transform transform hover:scale-[1.02] shadow-2xl text-base flex justify-center items-center gap-2 mt-2 cursor-pointer" type="submit">
+                    <button class="w-full bg-[#f97316] hover:bg-[#ea580c] border border-white/20 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-2xl text-base flex justify-center items-center gap-2 mt-2 cursor-pointer" type="submit">
                         <span class="whitespace-nowrap"><span class="lang-es">Cotizar Mi Proyecto Gratis</span><span class="lang-en">Get My Free Quote</span></span>
                     </button>
                 </form>
@@ -384,9 +454,9 @@
             <button onclick="prevSlide()" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-white text-earth-dark shadow-2xl border border-gray-200 items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer" aria-label="Anterior"><span class="material-symbols-outlined font-bold">arrow_back_ios_new</span></button>
             <button onclick="nextSlide()" class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-white text-earth-dark shadow-2xl border border-gray-200 items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer" aria-label="Siguiente"><span class="material-symbols-outlined font-bold">arrow_forward_ios</span></button>
 
-            <div id="slider-container" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 px-4 -mx-4 sm:mx-0 sm:px-0 cursor-grab active:cursor-grabbing select-none">
+            <div id="slider-container" class="flex overflow-hidden gap-6 pb-8 px-4 -mx-4 sm:mx-0 sm:px-0 select-none touch-pan-x" style="touch-action: pan-x;">
                 
-                <div class="snap-center shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
                     <div class="grid grid-cols-2 h-48 sm:h-56">
                         <div class="relative w-full h-full">
                             <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - COCINA]">
@@ -412,7 +482,7 @@
                     </div>
                 </div>
 
-                <div class="snap-center shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
                     <div class="grid grid-cols-2 h-48 sm:h-56">
                         <div class="relative w-full h-full">
                             <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - BAÑO]">
@@ -438,7 +508,7 @@
                     </div>
                 </div>
 
-                <div class="snap-center shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
                     <div class="grid grid-cols-2 h-48 sm:h-56">
                         <div class="relative w-full h-full">
                             <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - ROOFING]">
@@ -464,7 +534,7 @@
                     </div>
                 </div>
 
-                <div class="snap-center shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
                     <div class="grid grid-cols-2 h-48 sm:h-56">
                         <div class="relative w-full h-full">
                             <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - EXTERIOR]">
@@ -490,7 +560,7 @@
                     </div>
                 </div>
 
-                <div class="snap-center shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
                     <div class="grid grid-cols-2 h-48 sm:h-56">
                         <div class="relative w-full h-full">
                             <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - VENTANAS]">
@@ -521,11 +591,11 @@
         
         <div class="flex flex-col items-center justify-center mt-2 gap-3">
             <div class="flex items-center gap-2" aria-label="Paginación de testimonios">
-                <button onclick="scrollToSlide(0)" class="w-8 h-2.5 rounded-full bg-primary transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 1"></button>
-                <button onclick="scrollToSlide(1)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 2"></button>
-                <button onclick="scrollToSlide(2)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 3"></button>
-                <button onclick="scrollToSlide(3)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 4"></button>
-                <button onclick="scrollToSlide(4)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 5"></button>
+                <button onclick="scrollToSlide(1)" class="w-8 h-2.5 rounded-full bg-[#f97316] transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 1"></button>
+                <button onclick="scrollToSlide(2)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 2"></button>
+                <button onclick="scrollToSlide(3)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 3"></button>
+                <button onclick="scrollToSlide(4)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 4"></button>
+                <button onclick="scrollToSlide(5)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 5"></button>
             </div>
             <div class="flex items-center gap-2 text-gray-400 font-bold text-xs">
                 <span class="material-symbols-outlined text-sm">swipe</span> 
@@ -615,7 +685,7 @@
                         <option value="pintura" data-es-text="Pintura" data-en-text="Painting">Pintura</option>
                     </select>
                 </div>
-                <button class="w-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-transform transform hover:scale-[1.02] shadow-2xl text-base sm:text-lg flex items-center justify-center gap-2 mt-6 cursor-pointer" type="submit">
+                <button class="w-full bg-[#f97316] hover:bg-[#ea580c] border border-white/20 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-2xl text-base sm:text-lg flex items-center justify-center gap-2 mt-6 cursor-pointer" type="submit">
                     <span class="whitespace-nowrap"><span class="lang-es">Cotizar Mi Proyecto Gratis</span><span class="lang-en">Get My Free Quote</span></span>
                 </button>
             </form>
@@ -702,7 +772,7 @@
         <h3 class="font-heading text-2xl font-bold mb-6">
             <span class="lang-es">¿Prefieres hablar con un experto ahora?</span><span class="lang-en">Prefer to talk with an expert now?</span>
         </h3>
-        <a href="tel:5551234567" class="inline-flex bg-orange-500 border border-orange-400 text-white hover:bg-white hover:text-orange-600 font-extrabold px-8 py-4 rounded-full text-lg shadow-2xl transition-all items-center justify-center gap-3 hover:scale-105 cursor-pointer">
+        <a href="tel:5551234567" class="inline-flex bg-[#f97316] border border-white/20 text-white hover:bg-white hover:text-[#f97316] font-extrabold px-8 py-4 rounded-full text-lg shadow-2xl transition-all items-center justify-center gap-3 hover:scale-105 cursor-pointer">
             <span class="material-symbols-outlined text-2xl animate-pulse">phone_in_talk</span>
             <span>(555) 123-4567</span>
         </a>
