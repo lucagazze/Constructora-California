@@ -197,6 +197,10 @@
                 const walkX = Math.abs(currentTouchX - startTouchX);
                 const walkY = Math.abs(currentTouchY - startTouchY);
 
+                if (walkY > walkX && walkY > 5) {
+                    return;
+                }
+
                 if (walkX > walkY && walkX > 5) {
                     if (e.cancelable) e.preventDefault();
                 }
@@ -321,8 +325,8 @@
                         <input data-es-label="Nombre Completo" data-en-label="Full Name" data-es-placeholder="Nombre Completo" data-en-placeholder="Full Name" placeholder="Nombre Completo" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary font-medium" required type="text"/>
                     </div>
                     <div>
-                        <label class="block text-[11px] font-extrabold text-gray-700 mb-1 uppercase tracking-wider"><span class="lang-es">Correo Electrónico</span><span class="lang-en">Email Address</span></label>
-                        <input data-es-label="Correo Electrónico" data-en-label="Email Address" data-es-placeholder="Correo Electrónico" data-en-placeholder="Email Address" placeholder="Correo Electrónico" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary font-medium" required type="email"/>
+                        <label class="block text-[11px] font-extrabold text-gray-700 mb-1 uppercase tracking-wider"><span class="lang-es">Dirección de la Propiedad</span><span class="lang-en">Property Address</span></label>
+                        <input data-es-label="Dirección de la Propiedad" data-en-label="Property Address" data-es-placeholder="Dirección de la Propiedad" data-en-placeholder="Property Address" placeholder="Dirección de la Propiedad" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary font-medium" required type="text"/>
                     </div>
                     <div>
                         <label class="block text-[11px] font-extrabold text-gray-700 mb-1 uppercase tracking-wider"><span class="lang-es">Teléfono</span><span class="lang-en">Phone Number</span></label>
@@ -434,7 +438,7 @@
             <button onclick="prevSlide()" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-white text-earth-dark shadow-2xl border border-gray-200 items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer" aria-label="Anterior"><span class="material-symbols-outlined font-bold">arrow_back_ios_new</span></button>
             <button onclick="nextSlide()" class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-white text-earth-dark shadow-2xl border border-gray-200 items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer" aria-label="Siguiente"><span class="material-symbols-outlined font-bold">arrow_forward_ios</span></button>
 
-            <div id="slider-container" class="flex overflow-hidden gap-6 pb-8 px-4 -mx-4 sm:mx-0 sm:px-0 select-none touch-pan-x" style="touch-action: pan-x;">
+            <div id="slider-container" class="flex overflow-hidden gap-6 pb-8 px-4 -mx-4 sm:mx-0 sm:px-0 select-none touch-pan-y" style="touch-action: pan-y;">
                 
                 <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
                     <div class="grid grid-cols-2 h-48 sm:h-56">
@@ -648,8 +652,8 @@
                     <input data-es-label="Teléfono" data-en-label="Phone Number" data-es-placeholder="Teléfono" data-en-placeholder="Phone Number" placeholder="Teléfono" class="w-full rounded-xl border-none p-4 text-sm focus:ring-2 focus:ring-primary font-medium shadow-sm" required type="tel"/>
                 </div>
                 <div>
-                    <label class="block text-[11px] font-extrabold text-gray-700 mb-1.5 uppercase tracking-wider"><span class="lang-es">Correo Electrónico</span><span class="lang-en">Email Address</span></label>
-                    <input data-es-label="Correo Electrónico" data-en-label="Email Address" data-es-placeholder="Correo Electrónico" data-en-placeholder="Email Address" placeholder="Correo Electrónico" class="w-full rounded-xl border-none p-4 text-sm focus:ring-2 focus:ring-primary font-medium shadow-sm" required type="email"/>
+                    <label class="block text-[11px] font-extrabold text-gray-700 mb-1.5 uppercase tracking-wider"><span class="lang-es">Dirección de la Propiedad</span><span class="lang-en">Property Address</span></label>
+                    <input data-es-label="Dirección de la Propiedad" data-en-label="Property Address" data-es-placeholder="Dirección de la Propiedad" data-en-placeholder="Property Address" placeholder="Dirección de la Propiedad" class="w-full rounded-xl border-none p-4 text-sm focus:ring-2 focus:ring-primary font-medium shadow-sm" required type="text"/>
                 </div>
                 <div>
                     <label class="block text-[11px] font-extrabold text-gray-700 mb-1.5 uppercase tracking-wider"><span class="lang-es">¿Qué vas a remodelar?</span><span class="lang-en">What will you remodel?</span></label>
