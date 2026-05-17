@@ -95,23 +95,15 @@
 
         function nextSlide() {
             const container = document.getElementById('slider-container');
-            if (container) {
-                if (currentSlideIndex < container.children.length - 1) {
-                    scrollToSlide(currentSlideIndex + 1);
-                } else {
-                    scrollToSlide(0);
-                }
+            if (container && currentSlideIndex < container.children.length - 1) {
+                scrollToSlide(currentSlideIndex + 1);
             }
         }
 
         function prevSlide() {
             const container = document.getElementById('slider-container');
-            if (container) {
-                if (currentSlideIndex > 0) {
-                    scrollToSlide(currentSlideIndex - 1);
-                } else {
-                    scrollToSlide(container.children.length - 1);
-                }
+            if (container && currentSlideIndex > 0) {
+                scrollToSlide(currentSlideIndex - 1);
             }
         }
 
@@ -217,7 +209,7 @@
                 <button id="lang-btn-es" onclick="switchLanguage('es')" class="px-2.5 py-1 rounded-full bg-earth-dark text-white font-extrabold shadow-md transition-all text-xs tracking-wider cursor-pointer">ES</button>
                 <button id="lang-btn-en" onclick="switchLanguage('en')" class="px-2.5 py-1 rounded-full text-gray-600 hover:text-earth-dark font-bold transition-all text-xs tracking-wider bg-transparent cursor-pointer">EN</button>
             </div>
-            <a href="#contacto" class="flex bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-black transition-transform transform hover:scale-105 shadow-2xl items-center gap-1.5 group border border-orange-400 cursor-pointer">
+            <a href="#contacto" class="flex bg-primary hover:bg-primary-dark text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-black transition-transform transform hover:scale-105 shadow-xl items-center gap-1.5 group border border-white/20">
                 <span><span class="lang-es">Cotizar Gratis</span><span class="lang-en">Free Quote</span></span>
                 <span class="material-symbols-outlined text-xs sm:text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
             </a>
@@ -292,7 +284,7 @@
                             <option value="pintura" data-es-text="Pintura Int/Ext" data-en-text="Int/Ext Painting">Pintura Int/Ext</option>
                         </select>
                     </div>
-                    <button class="w-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-transform transform hover:scale-[1.02] shadow-2xl text-base flex justify-center items-center gap-2 mt-2 cursor-pointer" type="submit">
+                    <button class="w-full bg-primary hover:bg-primary-dark text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-transform transform hover:scale-[1.02] shadow-xl text-base flex justify-center items-center gap-2 mt-2 cursor-pointer" type="submit">
                         <span class="whitespace-nowrap"><span class="lang-es">Cotizar Mi Proyecto Gratis</span><span class="lang-en">Get My Free Quote</span></span>
                     </button>
                 </form>
@@ -615,7 +607,7 @@
                         <option value="pintura" data-es-text="Pintura" data-en-text="Painting">Pintura</option>
                     </select>
                 </div>
-                <button class="w-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-transform transform hover:scale-[1.02] shadow-2xl text-base sm:text-lg flex items-center justify-center gap-2 mt-6 cursor-pointer" type="submit">
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-transform transform hover:scale-[1.02] shadow-xl text-base sm:text-lg flex items-center justify-center gap-2 mt-6 cursor-pointer" type="submit">
                     <span class="whitespace-nowrap"><span class="lang-es">Cotizar Mi Proyecto Gratis</span><span class="lang-en">Get My Free Quote</span></span>
                 </button>
             </form>
@@ -702,7 +694,7 @@
         <h3 class="font-heading text-2xl font-bold mb-6">
             <span class="lang-es">¿Prefieres hablar con un experto ahora?</span><span class="lang-en">Prefer to talk with an expert now?</span>
         </h3>
-        <a href="tel:5551234567" class="inline-flex bg-orange-500 border border-orange-400 text-white hover:bg-white hover:text-orange-600 font-extrabold px-8 py-4 rounded-full text-lg shadow-2xl transition-all items-center justify-center gap-3 hover:scale-105 cursor-pointer">
+        <a href="tel:5551234567" class="inline-flex bg-primary text-white hover:bg-white hover:text-earth-dark font-extrabold px-8 py-4 rounded-full text-lg shadow-xl transition-all items-center justify-center gap-3 hover:scale-105">
             <span class="material-symbols-outlined text-2xl animate-pulse">phone_in_talk</span>
             <span>(555) 123-4567</span>
         </a>

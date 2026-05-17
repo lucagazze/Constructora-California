@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth" data-lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mountside Construction - Servicios de Renovación y Remodelación</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#1c6c2d",
+                        "surface": "#faf9f6",
+                        "on-surface-variant": "#40493e",
+                        "primary": "#38a169",
+                        "primary-dark": "#2f855a",
+                        "leaf-vibrant": "#5BB318",
+                        "earth-dark": "#1f2421",
+                        "outline-variant": "#bfc9bb",
+                        "surface-container-highest": "#e2e3df",
+                        "surface-container": "#eeeeea"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "heading": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style data-purpose="custom-utilities">
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Bilingual display toggling */
+        html[data-lang="en"] .lang-es { display: none !important; }
+        html[data-lang="es"] .lang-en { display: none !important; }
+    </style>
+    <script>
+        function switchLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            
+            const btnEs = document.getElementById('lang-btn-es');
+            const btnEn = document.getElementById('lang-btn-en');
+            
+            if (lang === 'es') {
+                btnEs.className = "px-2.5 py-1.5 rounded-full bg-primary text-white font-extrabold shadow-md transition-all text-xs tracking-wider";
+                btnEn.className = "px-2.5 py-1.5 rounded-full text-gray-600 hover:text-primary font-bold transition-all text-xs tracking-wider bg-white";
+            } else {
+                btnEn.className = "px-2.5 py-1.5 rounded-full bg-primary text-white font-extrabold shadow-md transition-all text-xs tracking-wider";
+                btnEs.className = "px-2.5 py-1.5 rounded-full text-gray-600 hover:text-primary font-bold transition-all text-xs tracking-wider bg-white";
+            }
+            
+            document.querySelectorAll('[data-es-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
+            });
+            document.querySelectorAll('[data-es-label]').forEach(el => {
+                const labelEl = el.previousElementSibling;
+                if (labelEl) labelEl.textContent = el.getAttribute(`data-${lang}-label`);
+            });
+            document.querySelectorAll('option[data-es-text]').forEach(opt => {
+                opt.textContent = opt.getAttribute(`data-${lang}-text`);
+            });
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-900 bg-surface antialiased selection:bg-primary selection:text-white">
+
+<nav class="fixed top-0 left-0 w-full z-50 px-2 sm:px-6 py-3 transition-all pointer-events-none">
+    <div class="max-w-7xl mx-auto flex items-center justify-between bg-white/95 backdrop-blur-md rounded-full px-3 sm:px-6 py-2 border border-gray-200 shadow-lg pointer-events-auto">
+        <a href="#" class="flex items-center group" aria-label="Inicio">
+            <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-all">
+                <span class="material-symbols-outlined text-lg">architecture</span>
+            </div>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-8 text-gray-600 text-sm font-bold tracking-wide">
+            <a class="hover:text-primary transition-colors" href="#problema"><span class="lang-es">Por qué nosotros</span><span class="lang-en">Why Us</span></a>
+            <a class="hover:text-primary transition-colors" href="#servicios"><span class="lang-es">Servicios</span><span class="lang-en">Services</span></a>
+            <a class="hover:text-primary transition-colors" href="#testimonios"><span class="lang-es">Testimonios</span><span class="lang-en">Reviews</span></a>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <div class="flex items-center bg-gray-100 p-0.5 sm:p-1 rounded-full border border-gray-200 shadow-inner">
+                <button id="lang-btn-es" onclick="switchLanguage('es')" class="px-2 py-1.5 rounded-full bg-primary text-white font-extrabold shadow-md transition-all text-[11px] tracking-wider">ES</button>
+                <button id="lang-btn-en" onclick="switchLanguage('en')" class="px-2 py-1.5 rounded-full text-gray-600 hover:text-primary font-bold transition-all text-[11px] tracking-wider bg-transparent">EN</button>
+            </div>
+            <a href="#contacto" class="flex bg-earth-dark hover:bg-gray-800 text-white px-3.5 py-2 rounded-full text-xs sm:text-sm font-extrabold transition-all shadow-md items-center gap-1 group">
+                <span class="lang-es">Cotizar</span><span class="lang-en">Quote</span>
+                <span class="material-symbols-outlined text-xs sm:text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</nav>
+<section class="relative min-h-[90vh] flex items-center pt-28 pb-16 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img alt="Renovación de casas" class="w-full h-full object-cover object-center" src="hero.jpg"/>
+        <div class="absolute inset-0 bg-gradient-to-r from-earth-dark/95 via-earth-dark/80 to-earth-dark/40"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-white max-w-2xl">
+            <div class="inline-flex bg-primary/20 backdrop-blur-md border border-primary/40 text-green-300 px-4 py-1.5 rounded-full text-xs font-bold mb-6 items-center gap-2">
+                <span class="material-symbols-outlined text-sm">bolt</span>
+                <span class="lang-es">Respuesta rápida en 24 horas</span><span class="lang-en">Fast response in 24 hours</span>
+            </div>
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-5 tracking-tight drop-shadow-lg">
+                <span class="lang-es">Aumenta el Valor de tu Casa <span class="text-primary">Sin Dolores de Cabeza</span></span>
+                <span class="lang-en">Increase Your Home's Value <span class="text-primary">Without the Headache</span></span>
+            </h1>
+            <p class="text-lg text-gray-300 mb-8 font-medium leading-relaxed">
+                <span class="lang-es">Renovaciones completas, a tiempo y dentro del presupuesto. Deja tu proyecto en manos de profesionales licenciados en California.</span>
+                <span class="lang-en">Complete renovations, on time and on budget. Leave your project in the hands of licensed California professionals.</span>
+            </p>
+            <div class="flex items-center gap-4 text-sm font-bold">
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary">check_circle</span> <span class="lang-es">Licenciados</span><span class="lang-en">Licensed</span></div>
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary">check_circle</span> <span class="lang-es">Asegurados</span><span class="lang-en">Insured</span></div>
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary">check_circle</span> <span class="lang-es">+500 Obras</span><span class="lang-en">+500 Projects</span></div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-md ml-auto">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-2xl relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-earth-dark text-white text-xs font-black uppercase tracking-wider px-6 py-2 rounded-full shadow-lg whitespace-nowrap">
+                    <span class="lang-es">Presupuesto Gratuito</span><span class="lang-en">Free Estimate</span>
+                </div>
+                <div class="text-center mt-3 mb-6">
+                    <p class="text-gray-500 text-sm font-medium">
+                        <span class="lang-es">Completa tus datos y un experto te contactará hoy mismo.</span>
+                        <span class="lang-en">Fill out your details and an expert will contact you today.</span>
+                    </p>
+                </div>
+                <form action="#contacto" class="space-y-3.5">
+                    <div>
+                        <input data-es-placeholder="Nombre Completo" data-en-placeholder="Full Name" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary transition-all font-medium" placeholder="Nombre Completo" required type="text"/>
+                    </div>
+                    <div>
+                        <input data-es-placeholder="Correo Electrónico" data-en-placeholder="Email Address" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary transition-all font-medium" placeholder="Correo Electrónico" required type="email"/>
+                    </div>
+                    <div>
+                        <input data-es-placeholder="Teléfono" data-en-placeholder="Phone Number" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary transition-all font-medium" placeholder="Teléfono" required type="tel"/>
+                    </div>
+                    <div>
+                        <select class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary transition-all font-medium text-gray-600" required>
+                            <option value="" data-es-text="¿Qué necesitas remodelar?" data-en-text="What do you need to remodel?">¿Qué necesitas remodelar?</option>
+                            <option value="cocina" data-es-text="Cocina" data-en-text="Kitchen">Cocina</option>
+                            <option value="bano" data-es-text="Baño" data-en-text="Bathroom">Baño</option>
+                            <option value="techo" data-es-text="Techo (Roofing)" data-en-text="Roofing">Techo (Roofing)</option>
+                            <option value="piso" data-es-text="Pisos / Concreto" data-en-text="Flooring / Concrete">Pisos / Concreto</option>
+                            <option value="otro" data-es-text="Otro / Exterior" data-en-text="Other / Exterior">Otro / Exterior</option>
+                        </select>
+                    </div>
+                    <button class="w-full bg-primary hover:bg-primary-dark text-white font-extrabold py-4 px-6 rounded-xl transition-transform transform hover:scale-[1.02] shadow-lg hover:shadow-primary/40 text-base flex justify-center items-center gap-2" type="submit">
+                        <span class="lang-es">Solicitar Cotización Ahora</span><span class="lang-en">Request Quote Now</span>
+                    </button>
+                    <p class="text-center text-[10px] text-gray-400 font-medium mt-2">
+                        <span class="lang-es">Tus datos están 100% seguros bajo cifrado de confidencialidad.</span>
+                        <span class="lang-en">Your data is 100% secure under confidentiality encryption.</span>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="problema" class="py-20 bg-surface-container-highest border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-earth-dark mb-12 leading-tight max-w-3xl mx-auto">
+            <span class="lang-es">¿Cansado de contratistas que prometen mucho y cumplen poco?</span>
+            <span class="lang-en">Tired of contractors who overpromise and underdeliver?</span>
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100">
+                <div class="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-2xl">schedule</span>
+                </div>
+                <h3 class="font-bold text-lg mb-2"><span class="lang-es">Obras Interminables</span><span class="lang-en">Never-ending Projects</span></h3>
+                <p class="text-gray-600 text-sm"><span class="lang-es">Semanas de retraso que destruyen tu rutina diaria y la paz de tu familia.</span><span class="lang-en">Weeks of delays that destroy your daily routine and your family's peace.</span></p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100">
+                <div class="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-2xl">request_quote</span>
+                </div>
+                <h3 class="font-bold text-lg mb-2"><span class="lang-es">Costos Ocultos</span><span class="lang-en">Hidden Costs</span></h3>
+                <p class="text-gray-600 text-sm"><span class="lang-es">Presupuestos iniciales bajos que mágicamente se duplican a mitad de la obra.</span><span class="lang-en">Low initial quotes that magically double halfway through the project.</span></p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100">
+                <div class="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-2xl">handyman</span>
+                </div>
+                <h3 class="font-bold text-lg mb-2"><span class="lang-es">Baja Calidad</span><span class="lang-en">Poor Quality</span></h3>
+                <p class="text-gray-600 text-sm"><span class="lang-es">Materiales baratos y terminaciones mediocres que tendrás que reparar pronto.</span><span class="lang-en">Cheap materials and mediocre finishes you'll have to repair soon.</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-20 bg-earth-dark text-white">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <span class="text-primary font-bold tracking-widest uppercase text-xs mb-2 block">
+                <span class="lang-es">La Diferencia Mountside</span><span class="lang-en">The Mountside Difference</span>
+            </span>
+            <h2 class="font-heading text-3xl sm:text-4xl font-extrabold mb-4">
+                <span class="lang-es">Renovaciones Cero Estrés</span>
+                <span class="lang-en">Zero-Stress Renovations</span>
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg"><span class="lang-es">Hacemos las cosas bien desde el primer día. Tu tranquilidad está garantizada por contrato.</span><span class="lang-en">We do things right from day one. Your peace of mind is guaranteed by contract.</span></p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6 text-center">
+            <div class="p-6">
+                <span class="material-symbols-outlined text-5xl text-primary mb-4">verified_user</span>
+                <h3 class="font-bold text-xl mb-2"><span class="lang-es">Precio Fijo Garantizado</span><span class="lang-en">Guaranteed Fixed Price</span></h3>
+                <p class="text-gray-400 text-sm"><span class="lang-es">Lo que cotizamos es lo que pagas. Sin sorpresas ni gastos extra en el camino.</span><span class="lang-en">What we quote is what you pay. No surprises or extra hidden fees.</span></p>
+            </div>
+            <div class="p-6">
+                <span class="material-symbols-outlined text-5xl text-primary mb-4">event_available</span>
+                <h3 class="font-bold text-xl mb-2"><span class="lang-es">Entregas a Tiempo</span><span class="lang-en">On-Time Delivery</span></h3>
+                <p class="text-gray-400 text-sm"><span class="lang-es">Cronogramas estrictos. Trabajamos rápido y limpio para devolverte tu hogar.</span><span class="lang-en">Strict schedules. We work fast and clean to give you your home back.</span></p>
+            </div>
+            <div class="p-6">
+                <span class="material-symbols-outlined text-5xl text-primary mb-4">workspace_premium</span>
+                <h3 class="font-bold text-xl mb-2"><span class="lang-es">Materiales Premium</span><span class="lang-en">Premium Materials</span></h3>
+                <p class="text-gray-400 text-sm"><span class="lang-es">Sólo instalamos materiales duraderos y de marcas reconocidas con garantía.</span><span class="lang-en">We only install durable, top-brand materials backed by warranties.</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-20 bg-surface" id="servicios">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-heading text-3xl font-extrabold text-earth-dark mb-3">
+                <span class="lang-es">Nuestros Servicios de Excelencia</span><span class="lang-en">Our Premium Services</span>
+            </h2>
+            <p class="text-gray-600"><span class="lang-es">Cubrimos todas las necesidades estructurales y estéticas de tu propiedad.</span><span class="lang-en">We cover all structural and aesthetic needs for your property.</span></p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='cocina'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">countertops</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Remodelación Cocinas</span><span class="lang-en">Kitchen Remodel</span></h3>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='bano'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">bathtub</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Remodelación Baños</span><span class="lang-en">Bathroom Remodel</span></h3>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='techo'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">roofing</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Roofing / Techos</span><span class="lang-en">Roofing</span></h3>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='piso'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">foundation</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Concreto & Pisos</span><span class="lang-en">Concrete & Floors</span></h3>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='otro'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">window</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Ventanas de Eficiencia</span><span class="lang-en">Efficient Windows</span></h3>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='otro'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">yard</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Landscaping / Césped</span><span class="lang-en">Landscaping & Lawn</span></h3>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='otro'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">hvac</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">HVAC / Mini Split</span><span class="lang-en">HVAC / Mini Split</span></h3>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-xl p-5 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='otro'; document.querySelector('#contacto').scrollIntoView();">
+                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2 transition-colors">format_paint</span>
+                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Pintura Int/Ext</span><span class="lang-en">Int/Ext Painting</span></h3>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="#contacto" class="inline-flex bg-earth-dark hover:bg-gray-800 text-white font-extrabold py-4 px-8 rounded-full transition-all shadow-lg text-sm items-center gap-2">
+                <span class="lang-es">Cotizar Mi Proyecto Específico</span><span class="lang-en">Quote My Specific Project</span>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="py-20 bg-surface-container" id="testimonios">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-heading text-3xl font-extrabold text-earth-dark mb-2">
+                <span class="lang-es">Familias Felices en California</span>
+                <span class="lang-en">Happy Families in California</span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 flex mb-3 text-sm">★★★★★</div>
+                <p class="text-gray-600 italic text-sm mb-4">"El equipo de Mountside transformó nuestra anticuada cocina. Sin retrasos, sin cuentos. Lo que firmamos fue lo que pagamos y el resultado es de revista."</p>
+                <div class="font-bold text-sm text-earth-dark">- María G. <span class="text-primary text-xs ml-1">(Verificado)</span></div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 flex mb-3 text-sm">★★★★★</div>
+                <p class="text-gray-600 italic text-sm mb-4">"Cambiaron todo el techo en 3 días y dejaron el jardín impecable. Es difícil encontrar contratistas tan limpios y responsables hoy en día."</p>
+                <div class="font-bold text-sm text-earth-dark">- Carlos R. <span class="text-primary text-xs ml-1">(Verificado)</span></div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 flex mb-3 text-sm">★★★★★</div>
+                <p class="text-gray-600 italic text-sm mb-4">"Renovaron nuestros dos baños completos. Excelente comunicación, sabíamos exactamente en qué etapa estaban cada día."</p>
+                <div class="font-bold text-sm text-earth-dark">- Ana M. <span class="text-primary text-xs ml-1">(Verificado)</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-20 bg-white border-t border-gray-200" id="contacto">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-earth-dark mb-4">
+            <span class="lang-es">No pospongas más el hogar de tus sueños</span>
+            <span class="lang-en">Stop postponing your dream home</span>
+        </h2>
+        <p class="text-lg text-gray-500 mb-10"><span class="lang-es">Habla con un experto hoy y descubre cuánto costará tu proyecto sin compromiso.</span><span class="lang-en">Speak with an expert today and find out how much your project will cost, obligation-free.</span></p>
+        
+        <div class="bg-surface-container-highest p-6 sm:p-10 rounded-3xl text-left shadow-inner max-w-3xl mx-auto">
+            <form class="space-y-4">
+                <div class="grid sm:grid-cols-3 gap-4">
+                    <input data-es-placeholder="Nombre Completo" data-en-placeholder="Full Name" class="w-full rounded-xl border-none bg-white p-4 text-sm focus:ring-2 focus:ring-primary shadow-sm font-medium" required type="text"/>
+                    <input data-es-placeholder="Correo Electrónico" data-en-placeholder="Email Address" class="w-full rounded-xl border-none bg-white p-4 text-sm focus:ring-2 focus:ring-primary shadow-sm font-medium" required type="email"/>
+                    <input data-es-placeholder="Teléfono" data-en-placeholder="Phone Number" class="w-full rounded-xl border-none bg-white p-4 text-sm focus:ring-2 focus:ring-primary shadow-sm font-medium" required type="tel"/>
+                </div>
+                <select class="w-full rounded-xl border-none bg-white p-4 text-sm text-gray-600 focus:ring-2 focus:ring-primary shadow-sm font-medium" required>
+                    <option value="" data-es-text="¿En qué podemos ayudarte?" data-en-text="How can we help you?">¿En qué podemos ayudarte?</option>
+                    <option value="cocina" data-es-text="Cocina" data-en-text="Kitchen">Cocina</option>
+                    <option value="bano" data-es-text="Baño" data-en-text="Bathroom">Baño</option>
+                    <option value="techo" data-es-text="Techo" data-en-text="Roofing">Techo</option>
+                    <option value="otro" data-es-text="Otro Servicio" data-en-text="Other Service">Otro Servicio</option>
+                </select>
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-black py-4 px-8 rounded-xl transition-all shadow-md text-lg mt-2" type="submit">
+                    <span class="lang-es">Quiero Mi Presupuesto Gratis</span><span class="lang-en">I Want My Free Estimate</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="bg-earth-dark py-12 text-center text-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <h3 class="font-heading text-2xl font-bold mb-6">
+            <span class="lang-es">¿Prefieres hablar ahora mismo?</span><span class="lang-en">Prefer to talk right now?</span>
+        </h3>
+        <a href="tel:5551234567" class="inline-flex bg-primary text-white hover:bg-white hover:text-earth-dark font-extrabold px-8 py-4 rounded-full text-lg shadow-xl transition-all items-center justify-center gap-3 hover:scale-105 mb-8">
+            <span class="material-symbols-outlined text-2xl animate-pulse">phone_in_talk</span>
+            <span>(555) 123-4567</span>
+        </a>
+        <div class="border-t border-gray-700 pt-6 text-sm text-gray-400 font-medium">
+            <span class="lang-es">© 2026 Mountside Construction. Licenciados y Asegurados.</span>
+            <span class="lang-en">© 2026 Mountside Construction. Licensed & Insured.</span>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
