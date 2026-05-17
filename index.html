@@ -116,22 +116,17 @@
         }
 
         function checkLoop(totalSlides) {
-            if (isTransitioning) return;
             const container = document.getElementById('slider-container');
             if (!container) return;
 
             if (currentSlideIndex === 0) {
                 isTransitioning = true;
-                setTimeout(() => {
-                    scrollToSlide(totalSlides - 2, true);
-                    isTransitioning = false;
-                }, 350);
+                scrollToSlide(totalSlides - 2, true);
+                setTimeout(() => { isTransitioning = false; }, 50);
             } else if (currentSlideIndex === totalSlides - 1) {
                 isTransitioning = true;
-                setTimeout(() => {
-                    scrollToSlide(1, true);
-                    isTransitioning = false;
-                }, 350);
+                scrollToSlide(1, true);
+                setTimeout(() => { isTransitioning = false; }, 50);
             }
         }
 
@@ -178,6 +173,7 @@
             }, 50);
 
             let startTouchX = 0;
+            let startTouchY = 0;
             let startScrollLeft = 0;
             let startDragIndex = 1;
             let isDragging = false;
@@ -186,6 +182,7 @@
                 if (isTransitioning) return;
                 isDragging = true;
                 startTouchX = e.touches[0].clientX;
+                startTouchY = e.touches[0].clientY;
                 startScrollLeft = container.scrollLeft;
                 startDragIndex = currentSlideIndex;
             }, { passive: true });
@@ -226,26 +223,6 @@
                     checkLoop(slides.length);
                 }, 350);
             }, { passive: true });
-
-            container.addEventListener('scroll', () => {
-                if (isTransitioning || isDragging) return;
-                const slides = container.querySelectorAll('.slide-item');
-                let minDistance = Infinity;
-                let activeIndex = currentSlideIndex;
-                const containerCenter = container.scrollLeft + container.offsetWidth / 2;
-                
-                for (let i = 0; i < slides.length; i++) {
-                    const child = slides[i];
-                    const childCenter = (child.offsetLeft - container.offsetLeft) + child.offsetWidth / 2;
-                    const dist = Math.abs(childCenter - containerCenter);
-                    if (dist < minDistance) {
-                        minDistance = dist;
-                        activeIndex = i;
-                    }
-                }
-                currentSlideIndex = activeIndex;
-                updatePagination(activeIndex, slides.length);
-            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
