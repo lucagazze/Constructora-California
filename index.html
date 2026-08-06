@@ -1,766 +1,828 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth" data-lang="es">
+<html lang="es" data-lang="es">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>SOCAL Home Solutions - Renovación y Remodelación</title>
-    <link rel="icon" href="689913559_18100975990886395_2527822686595344901_n (1).jpg" type="image/jpeg"/>
-    <link rel="apple-touch-icon" href="689913559_18100975990886395_2527822686595344901_n (1).jpg"/>
-    <link rel="shortcut icon" href="689913559_18100975990886395_2527822686595344901_n (1).jpg" type="image/jpeg"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet"/>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#38a169",
-                        "primary-dark": "#2f855a",
-                        "earth-dark": "#1f2421",
-                        "surface": "#faf9f6",
-                        "surface-container-highest": "#e2e3df",
-                        "surface-container": "#eeeeea"
-                    },
-                    fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "heading": ["Manrope", "sans-serif"]
-                    }
-                }
-            }
-        }
-    </script>
-    <style data-purpose="custom-utilities">
-        /* Ocultar barra de scroll en el slider pero mantener funcionalidad */
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Sistema bilingüe */
-        html[data-lang="en"] .lang-es { display: none !important; }
-        html[data-lang="es"] .lang-en { display: none !important; }
-        
-        /* Snap para el slider de testimonios */
-        .snap-mandatory { scroll-snap-type: x mandatory; }
-        .snap-center { scroll-snap-align: center; }
-        
-        /* Estilos para las imágenes vacías (Placeholders) */
-        .img-placeholder {
-            background-color: #d1d5db; /* gray-300 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 10px;
-            color: #6b7280;
-            font-weight: bold;
-            padding: 10px;
-        }
-    </style>
-    <script>
-        function switchLanguage(lang) {
-            document.documentElement.setAttribute('data-lang', lang);
-            document.documentElement.setAttribute('lang', lang);
-            
-            const btnEs = document.getElementById('lang-btn-es');
-            const btnEn = document.getElementById('lang-btn-en');
-            
-            if (lang === 'es') {
-                btnEs.className = "px-2.5 py-1 rounded-full bg-earth-dark text-white font-extrabold shadow-md transition-all text-xs tracking-wider";
-                btnEn.className = "px-2.5 py-1 rounded-full text-gray-600 hover:text-earth-dark font-bold transition-all text-xs tracking-wider bg-transparent";
-            } else {
-                btnEn.className = "px-2.5 py-1 rounded-full bg-earth-dark text-white font-extrabold shadow-md transition-all text-xs tracking-wider";
-                btnEs.className = "px-2.5 py-1 rounded-full text-gray-600 hover:text-earth-dark font-bold transition-all text-xs tracking-wider bg-transparent";
-            }
-            
-            document.querySelectorAll('[data-es-placeholder]').forEach(el => {
-                el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
-            });
-            document.querySelectorAll('[data-es-label]').forEach(el => {
-                const labelEl = el.previousElementSibling;
-                if (labelEl) labelEl.textContent = el.getAttribute(`data-${lang}-label`);
-            });
-            document.querySelectorAll('option[data-es-text]').forEach(opt => {
-                opt.textContent = opt.getAttribute(`data-${lang}-text`);
-            });
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SOCAL Home Solutions — Remodela hoy, empieza a pagar en 10 años</title>
+<meta name="description" content="Remodelación de cocinas, baños, techos y ventanas en California con financiamiento directo: empieza a pagar en 10 años o desde $80 al mes. Estimado sin costo. Aplica y descubre si calificas.">
+<meta name="theme-color" content="#111418">
+<link rel="icon" href="img/logo.webp" type="image/webp">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Remodela tu casa hoy. Empieza a pagar en 10 años.">
+<meta property="og:description" content="Financiamiento directo para propietarios de California. Cocinas, baños, techos, ventanas. Estimado sin costo.">
+<meta property="og:image" content="img/cocina_after.webp">
+<meta property="og:locale" content="es_US">
 
-        let currentSlideIndex = 1;
-        let isTransitioning = false;
-        let isTouching = false;
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":["GeneralContractor","HomeAndConstructionBusiness"],
+      "name":"SOCAL Home Solutions",
+      "description":"Remodelación residencial con financiamiento para propietarios de California: cocinas, baños, techos, ventanas, HVAC y landscaping.",
+      "areaServed":{"@type":"State","name":"California"},
+      "telephone":"PENDIENTE",
+      "email":"PENDIENTE",
+      "priceRange":"$$",
+      "image":"img/cocina_after.webp"
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"¿De verdad empiezo a pagar en 10 años?","acceptedAnswer":{"@type":"Answer","text":"Es un programa de financiamiento con pago diferido, sujeto a aprobación de crédito. Al aplicar confirmamos por escrito el plan exacto: pago diferido o cuotas desde $80 al mes."}},
+        {"@type":"Question","name":"¿Cuánto cuesta el estimado?","acceptedAnswer":{"@type":"Answer","text":"Nada. Visitamos tu casa, medimos y entregamos precio cerrado por escrito, sin cargo y sin compromiso."}},
+        {"@type":"Question","name":"¿Necesito buen crédito?","acceptedAnswer":{"@type":"Answer","text":"Revisamos cada caso. Hay más de una opción de financiamiento; todo está sujeto a aprobación."}},
+        {"@type":"Question","name":"¿Cuánto tarda la obra?","acceptedAnswer":{"@type":"Answer","text":"Depende del proyecto y la fecha de entrega queda firmada en el contrato antes de empezar."}}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        function scrollToSlide(index, instant = false) {
-            const container = document.getElementById('slider-container');
-            if (container) {
-                const slides = container.querySelectorAll('.slide-item');
-                if (slides && slides[index]) {
-                    const item = slides[index];
-                    const targetLeft = item.offsetLeft - container.offsetLeft - (container.offsetWidth - item.offsetWidth) / 2;
-                    container.scrollTo({ left: targetLeft, behavior: instant ? 'auto' : 'smooth' });
-                    currentSlideIndex = index;
-                    updatePagination(index, slides.length);
-                }
-            }
-        }
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#111418;
+  --ink-soft:#3c4650;
+  --muted:#6b7784;
+  --line:#e4e0d9;
+  --paper:#faf8f5;
+  --paper-2:#f2eee8;
+  --white:#fff;
+  --brand:#4f2bc4;
+  --brand-soft:#eee9ff;
+  --brand-deep:#38199a;
+  --cta:#f0651f;
+  --cta-hover:#d9540f;
+  --ok:#1f8a5b;
+  --radius:18px;
+  --shadow-sm:0 1px 2px rgba(17,20,24,.06),0 4px 14px rgba(17,20,24,.05);
+  --shadow-md:0 10px 30px rgba(17,20,24,.10);
+  --shadow-lg:0 30px 70px rgba(17,20,24,.18);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:Archivo,Inter,sans-serif;margin:0;line-height:1.05;letter-spacing:-.025em;font-weight:800}
+h1{font-size:clamp(2.1rem,5.2vw,3.7rem);font-weight:900;letter-spacing:-.035em;text-wrap:balance}
+h2{font-size:clamp(1.85rem,4.2vw,3rem)}
+h3{font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.02em}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.sec{padding:clamp(64px,8vw,110px) 0}
+.eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brand)}
+.lead{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--ink-soft);line-height:1.65}
+.center{text-align:center}
+.mt-s{margin-top:14px}.mt-m{margin-top:24px}.mt-l{margin-top:44px}
 
-        function updatePagination(index, totalSlides) {
-            const dots = document.querySelectorAll('.pagination-dot');
-            let realIndex = index - 1;
-            if (index === 0) realIndex = totalSlides - 3;
-            if (index === totalSlides - 1) realIndex = 0;
+/* bilingüe */
+html[data-lang="en"] .es{display:none!important}
+html[data-lang="es"] .en{display:none!important}
 
-            dots.forEach((dot, idx) => {
-                if (idx === realIndex) {
-                    dot.className = "w-8 h-2.5 rounded-full bg-[#f97316] transition-all duration-300 pagination-dot cursor-pointer";
-                } else {
-                    dot.className = "w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer";
-                }
-            });
-        }
+/* pendiente de dato real */
+.todo{background:#fff3c4;color:#7a5b00;border-bottom:2px dotted #d9a800;padding:0 4px;border-radius:3px}
 
-        function checkLoop(totalSlides) {
-            const container = document.getElementById('slider-container');
-            if (!container) return;
+/* ============ BOTONES ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:Archivo,sans-serif;font-weight:800;letter-spacing:-.01em;
+  padding:17px 30px;border-radius:999px;border:0;cursor:pointer;
+  font-size:1.02rem;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  text-align:center;line-height:1.15;
+}
+.btn-cta{background:var(--cta);color:#fff;box-shadow:0 10px 26px rgba(240,101,31,.32)}
+.btn-cta:hover{background:var(--cta-hover);transform:translateY(-2px);box-shadow:0 16px 34px rgba(240,101,31,.36)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-sm{padding:12px 20px;font-size:.9rem}
+.btn-block{width:100%}
 
-            if (currentSlideIndex === 0) {
-                isTransitioning = true;
-                scrollToSlide(totalSlides - 2, true);
-                setTimeout(() => { isTransitioning = false; }, 50);
-            } else if (currentSlideIndex === totalSlides - 1) {
-                isTransitioning = true;
-                scrollToSlide(1, true);
-                setTimeout(() => { isTransitioning = false; }, 50);
-            }
-        }
+/* ============ NAV ============ */
+header{position:sticky;top:0;z-index:60;background:rgba(250,248,245,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:70px}
+.brand{display:flex;align-items:center;gap:11px;font-family:Archivo;font-weight:900;font-size:1.02rem;letter-spacing:-.02em}
+.brand img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+.brand small{display:none;font-family:Inter;font-weight:600;font-size:.66rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+@media(min-width:760px){.brand small{display:block}}
+@media(max-width:759px){.brand{font-size:.92rem}.brand img{width:34px;height:34px}}
+.nav-links{display:none;gap:26px;margin-left:auto;font-size:.92rem;font-weight:600;color:var(--ink-soft)}
+.nav-links a:hover{color:var(--brand)}
+.nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+.lang{display:flex;background:var(--paper-2);border-radius:999px;padding:3px;border:1px solid var(--line)}
+.lang button{border:0;background:transparent;font:700 .74rem Inter;letter-spacing:.08em;padding:6px 11px;border-radius:999px;cursor:pointer;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.nav-cta{display:none}
+@media(min-width:900px){
+  .nav-links{display:flex}
+  .nav-right{margin-left:26px}
+  .nav-cta{display:inline-flex}
+}
 
-        function nextSlide() {
-            if (isTransitioning) return;
-            const container = document.getElementById('slider-container');
-            const slides = container.querySelectorAll('.slide-item');
-            if (currentSlideIndex < slides.length - 1) {
-                scrollToSlide(currentSlideIndex + 1);
-                setTimeout(() => checkLoop(slides.length), 350);
-            }
-        }
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(900px 460px at 78% 8%,rgba(79,43,196,.42),transparent 62%),
+  radial-gradient(700px 420px at 6% 92%,rgba(240,101,31,.16),transparent 60%);pointer-events:none}
+.hero-grid{position:relative;z-index:2;display:grid;gap:40px;padding:clamp(44px,6vw,78px) 0 clamp(56px,7vw,86px)}
+@media(min-width:1000px){.hero-grid{grid-template-columns:1.06fr .94fr;gap:56px;align-items:center}}
+.pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);
+  padding:8px 16px;border-radius:999px;font-size:.79rem;font-weight:700;letter-spacing:.02em;backdrop-filter:blur(6px)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.22)}
+.hero h1{margin:22px 0 0}
+.hero h1 .hl{color:#c9b6ff;display:block}
+.hero .lead{color:rgba(255,255,255,.8);max-width:34em;margin-top:20px}
+.hero-proof{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:26px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85)}
+.hero-proof span{display:flex;align-items:center;gap:8px}
+.hero-proof svg{width:17px;height:17px;flex:none;color:#7cf0b0}
+.hero-media{display:none;position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:16/10}
+@media(min-width:1000px){.hero-media{display:block}}
+.hero-media img{width:100%;height:100%;object-fit:cover}
+.hero-tag{position:absolute;left:16px;bottom:16px;background:rgba(17,20,24,.82);backdrop-filter:blur(8px);
+  color:#fff;padding:11px 17px;border-radius:14px;font-size:.8rem;font-weight:700;border:1px solid rgba(255,255,255,.14)}
+.hero-tag b{color:#c9b6ff}
 
-        function prevSlide() {
-            if (isTransitioning) return;
-            const container = document.getElementById('slider-container');
-            const slides = container.querySelectorAll('.slide-item');
-            if (currentSlideIndex > 0) {
-                scrollToSlide(currentSlideIndex - 1);
-                setTimeout(() => checkLoop(slides.length), 350);
-            }
-        }
+/* form card */
+.card-form{background:#fff;color:var(--ink);border-radius:22px;padding:26px;box-shadow:var(--shadow-lg);position:relative}
+.card-form .badge{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--cta);color:#fff;
+  font:800 .72rem Archivo;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px rgba(240,101,31,.35)}
+.card-form h3{margin-top:12px;font-size:1.3rem}
+.card-form .sub{font-size:.9rem;color:var(--muted);margin-top:8px}
+.field{margin-top:14px}
+.field label{display:block;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.field input,.field select{
+  width:100%;padding:15px 16px;border:1.5px solid var(--line);border-radius:13px;background:#fbfaf8;
+  font:500 1rem Inter;color:var(--ink);transition:border-color .15s,box-shadow .15s;
+}
+.field input:focus,.field select:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 4px rgba(79,43,196,.12);background:#fff}
+.disclaimer{font-size:.72rem;color:var(--muted);margin-top:14px;line-height:1.5;text-align:center}
 
-        function initSlider() {
-            const container = document.getElementById('slider-container');
-            if (!container) return;
+/* ============ OFERTAS ============ */
+.offers{background:var(--brand);color:#fff;padding:0}
+.offers-grid{display:grid;gap:1px;background:rgba(255,255,255,.16)}
+@media(min-width:820px){.offers-grid{grid-template-columns:repeat(3,1fr)}}
+.offer{background:var(--brand);padding:30px 26px;display:flex;gap:16px;align-items:flex-start}
+.offer .ico{width:42px;height:42px;flex:none;border-radius:12px;background:rgba(255,255,255,.15);display:grid;place-items:center;font-size:1.25rem}
+.offer h3{font-size:1.06rem;color:#fff}
+.offer p{font-size:.87rem;color:rgba(255,255,255,.78);margin-top:5px;line-height:1.5}
 
-            const originalSlides = Array.from(container.querySelectorAll('.slide-item'));
-            if (originalSlides.length < 2) return;
+/* ============ CALIFICAS ============ */
+.qual{background:var(--paper-2)}
+.qual-box{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(28px,4vw,46px);box-shadow:var(--shadow-sm)}
+.checks{display:grid;gap:14px;margin-top:26px}
+@media(min-width:800px){.checks{grid-template-columns:repeat(3,1fr)}}
+.check{display:flex;gap:13px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:18px}
+.check .tick{width:26px;height:26px;flex:none;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:800}
+.check b{display:block;font-size:.96rem}
+.check span{font-size:.85rem;color:var(--muted)}
 
-            if (container.querySelectorAll('.clone').length === 0) {
-                const firstClone = originalSlides[0].cloneNode(true);
-                const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+/* ============ COMPARADOR ============ */
+.cmp-tabs{display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;margin-top:26px;scrollbar-width:none}
+.cmp-tabs::-webkit-scrollbar{display:none}
+.cmp-tab{white-space:nowrap;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);
+  padding:11px 20px;border-radius:999px;font:700 .88rem Inter;cursor:pointer;transition:.16s}
+.cmp-tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cmp-stage{margin-top:22px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-md);background:#000}
+.cmp{position:relative;aspect-ratio:3/2;overflow:hidden;touch-action:pan-y;user-select:none;cursor:ew-resize}
+@media(min-width:900px){.cmp{aspect-ratio:16/9}}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cmp .after-wrap{position:absolute;inset:0;clip-path:inset(0 0 0 50%);will-change:clip-path}
+.cmp .tag{position:absolute;top:14px;font:800 .68rem Archivo;letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 14px;border-radius:999px;color:#fff;backdrop-filter:blur(6px)}
+.cmp .tag-b{left:14px;background:rgba(17,20,24,.72)}
+.cmp .tag-a{right:14px;background:rgba(79,43,196,.85)}
+.cmp .handle{position:absolute;top:0;bottom:0;width:3px;background:#fff;left:50%;transform:translateX(-50%);box-shadow:0 0 14px rgba(0,0,0,.45);pointer-events:none}
+.cmp .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;
+  background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.35);display:grid;place-items:center;pointer-events:none;font-size:1rem;color:var(--ink)}
+.cmp-cap{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;align-items:center;background:#fff;padding:16px 20px;border-top:1px solid var(--line)}
+.cmp-cap b{font-family:Archivo;font-size:1.02rem}
+.cmp-cap .price{font:800 .84rem Archivo;color:var(--brand);background:var(--brand-soft);padding:6px 14px;border-radius:999px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:12px;text-align:center}
 
-                firstClone.classList.add('clone', 'pointer-events-none');
-                lastClone.classList.add('clone', 'pointer-events-none');
+/* ============ CARDS GENÉRICAS ============ */
+.grid-3{display:grid;gap:18px}
+@media(min-width:840px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.grid-4{display:grid;gap:16px}
+@media(min-width:640px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.grid-4{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm)}
+.card .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:16px}
+.card p{color:var(--muted);font-size:.92rem;margin-top:8px;line-height:1.6}
+.ico-red{background:#fdecec;color:#c53030}
+.ico-brand{background:var(--brand-soft);color:var(--brand)}
 
-                container.insertBefore(lastClone, originalSlides[0]);
-                container.appendChild(firstClone);
-            }
+/* promesa oscura */
+.dark{background:var(--ink);color:#fff}
+.dark h2{color:#fff}
+.dark .lead{color:rgba(255,255,255,.72)}
+.card-dark{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:26px}
+.card-dark h3{color:#fff}
+.card-dark p{color:rgba(255,255,255,.66);font-size:.92rem;margin-top:8px;line-height:1.6}
+.card-dark .ico{background:rgba(201,182,255,.16);color:#c9b6ff}
 
-            setTimeout(() => {
-                scrollToSlide(1, true);
-            }, 50);
+/* pasos */
+.steps{counter-reset:s;display:grid;gap:18px}
+@media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow-sm)}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:24px;width:34px;height:34px;border-radius:50%;
+  background:var(--brand);color:#fff;display:grid;place-items:center;font:800 .95rem Archivo}
+.step h3{margin-top:10px;font-size:1.05rem}
+.step p{font-size:.9rem;color:var(--muted);margin-top:8px}
 
-            let startTouchX = 0;
-            let startTouchY = 0;
-            let startScrollLeft = 0;
-            let startDragIndex = 1;
-            let isDragging = false;
+/* servicios */
+.srv{display:grid;gap:14px}
+@media(min-width:600px){.srv{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.srv{grid-template-columns:repeat(4,1fr)}}
+.srv a{display:flex;gap:13px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px;
+  font-weight:700;font-size:.95rem;transition:.16s;box-shadow:var(--shadow-sm)}
+.srv a:hover{border-color:var(--brand);transform:translateY(-2px)}
+.srv .ico{width:38px;height:38px;border-radius:11px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:1.15rem;flex:none}
 
-            container.addEventListener('touchstart', (e) => { 
-                if (isTransitioning) return;
-                isDragging = true;
-                startTouchX = e.touches[0].clientX;
-                startTouchY = e.touches[0].clientY;
-                startScrollLeft = container.scrollLeft;
-                startDragIndex = currentSlideIndex;
-            }, { passive: true });
+/* testimonios */
+.quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm)}
+.stars{color:#f5a623;letter-spacing:2px;font-size:.95rem}
+.quote p{font-size:.98rem;color:var(--ink-soft);margin-top:12px;line-height:1.65}
+.quote footer{display:flex;align-items:center;gap:11px;margin-top:18px;border:0;padding:0;background:none}
+.quote .av{width:38px;height:38px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font:800 .9rem Archivo}
+.quote small{display:block;color:var(--muted);font-size:.78rem}
 
-            container.addEventListener('touchmove', (e) => {
-                if (!isDragging || isTransitioning) return;
-                const currentTouchX = e.touches[0].clientX;
-                const currentTouchY = e.touches[0].clientY;
-                const walkX = Math.abs(currentTouchX - startTouchX);
-                const walkY = Math.abs(currentTouchY - startTouchY);
+/* faq */
+.faq{max-width:820px;margin:0 auto}
+.q{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:11px;overflow:hidden}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;
+  padding:20px 22px;text-align:left;font:700 1rem Inter;color:var(--ink);cursor:pointer}
+.q .plus{font-size:1.3rem;color:var(--brand);flex:none;transition:transform .2s}
+.q[open] .plus{transform:rotate(45deg)}
+.q .a{padding:0 22px 20px;color:var(--muted);font-size:.94rem;line-height:1.65;display:none}
+.q[open] .a{display:block}
 
-                if (walkY > walkX && walkY > 5) {
-                    return;
-                }
+/* cta final */
+.final{background:linear-gradient(160deg,#38199a,#4f2bc4 55%,#2c1580);color:#fff}
+.final-grid{display:grid;gap:34px}
+@media(min-width:980px){.final-grid{grid-template-columns:1fr .88fr;align-items:center;gap:56px}}
+.final h2{color:#fff}
+.final .lead{color:rgba(255,255,255,.82)}
+.final ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
+.final li{display:flex;gap:11px;align-items:flex-start;font-size:.96rem;font-weight:600;color:rgba(255,255,255,.92)}
+.final li i{font-style:normal;color:#7cf0b0}
 
-                if (walkX > walkY && walkX > 5) {
-                    if (e.cancelable) e.preventDefault();
-                }
+/* footer */
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:56px 0 120px;font-size:.86rem}
+footer.site .cols{display:grid;gap:28px}
+@media(min-width:800px){footer.site .cols{grid-template-columns:1.4fr 1fr 1fr}}
+footer.site h4{color:#fff;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+footer.site a:hover{color:#fff}
+.legal{border-top:1px solid rgba(255,255,255,.1);margin-top:34px;padding-top:20px;font-size:.74rem;line-height:1.6;color:rgba(255,255,255,.42)}
 
-                const walk = startTouchX - currentTouchX;
-                container.scrollLeft = startScrollLeft + walk;
-            }, { passive: false });
+/* barra móvil fija */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;gap:9px}
+.sticky-cta .btn{flex:1;padding:14px 12px;font-size:.92rem}
+@media(min-width:900px){.sticky-cta{display:none} footer.site{padding-bottom:56px}}
 
-            container.addEventListener('touchend', (e) => { 
-                if (!isDragging || isTransitioning) return;
-                isDragging = false;
-                const endTouchX = e.changedTouches[0].clientX;
-                const diffX = startTouchX - endTouchX;
-                const slides = container.querySelectorAll('.slide-item');
-                
-                let targetIndex = startDragIndex;
-                if (diffX > 35) {
-                    targetIndex = startDragIndex + 1;
-                } else if (diffX < -35) {
-                    targetIndex = startDragIndex - 1;
-                }
-                
-                targetIndex = Math.max(0, Math.min(slides.length - 1, targetIndex));
-                scrollToSlide(targetIndex);
-
-                setTimeout(() => {
-                    checkLoop(slides.length);
-                }, 350);
-            }, { passive: true });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            switchLanguage('es');
-            initSlider();
-        });
-
-        function toggleFAQ(id) {
-            const content = document.getElementById(`faq-${id}`);
-            const icon = document.getElementById(`faq-icon-${id}`);
-            if (content && icon) {
-                if (content.classList.contains('hidden')) {
-                    content.classList.remove('hidden');
-                    icon.textContent = 'remove';
-                } else {
-                    content.classList.add('hidden');
-                    icon.textContent = 'add';
-                }
-            }
-        }
-    </script>
+.reveal{opacity:0;transform:translateY(22px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
 </head>
-<body class="font-sans text-gray-900 bg-surface antialiased selection:bg-primary selection:text-white">
+<body>
 
-<nav class="fixed top-0 left-0 w-full z-50 px-2 sm:px-6 py-3 transition-all pointer-events-none">
-    <div class="max-w-7xl mx-auto flex items-center justify-between bg-white/95 backdrop-blur-md rounded-full px-3 sm:px-6 py-2 border border-gray-200 shadow-lg pointer-events-auto relative">
-        <a href="#" class="flex items-center group" aria-label="Inicio">
-            <img src="689913559_18100975990886395_2527822686595344901_n (1).jpg" alt="SOCAL Home Solutions Logo" class="h-10 sm:h-12 w-auto rounded-full object-contain shadow transition-transform group-hover:scale-105" />
+<!-- ================= NAV ================= -->
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <img src="img/logo.webp" alt="SOCAL Home Solutions" width="38" height="38">
+      <span>SOCAL Home Solutions
+        <small class="es">Remodelación con financiamiento · California</small>
+        <small class="en">Financed remodeling · California</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#transformaciones"><span class="es">Transformaciones</span><span class="en">Transformations</span></a>
+      <a href="#califica"><span class="es">¿Calificas?</span><span class="en">Do you qualify?</span></a>
+      <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang">
+        <button id="b-es" aria-pressed="true" onclick="setLang('es')">ES</button>
+        <button id="b-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#aplicar" class="btn btn-cta btn-sm nav-cta"><span class="es">Aplicar ahora</span><span class="en">Apply now</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><span class="dot"></span>
+        <span class="es">Financiamiento directo para propietarios de California</span>
+        <span class="en">Direct financing for California homeowners</span>
+      </span>
+
+      <h1>
+        <span class="es">Remodela tu casa hoy.<span class="hl">Empieza a pagar en 10 años.</span></span>
+        <span class="en">Remodel your home today.<span class="hl">Start paying in 10 years.</span></span>
+      </h1>
+
+      <p class="lead">
+        <span class="es">Cocinas, baños, techos, ventanas y remodelaciones completas. Sin grandes costos iniciales: aplicas hoy, te decimos en 24 horas si calificas y recibes tu estimado <b>sin costo</b>.</span>
+        <span class="en">Kitchens, bathrooms, roofing, windows and full remodels. No large upfront cost: apply today, find out in 24 hours if you qualify, and get your estimate <b>at no cost</b>.</span>
+      </p>
+
+      <div class="hero-proof">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg><span class="es">Contratista licenciado y asegurado</span><span class="en">Licensed &amp; insured contractor</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg><span class="es">Precio cerrado por contrato</span><span class="en">Fixed price by contract</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg><span class="es">Aprobación rápida</span><span class="en">Fast approval</span></span>
+      </div>
+
+      <div class="hero-media mt-l">
+        <img src="img/cocina_after.webp" alt="Cocina remodelada por SOCAL Home Solutions en California" width="1400" height="933" fetchpriority="high">
+        <div class="hero-tag">
+          <span class="es">Cocina completa <b>desde $80 al mes</b></span>
+          <span class="en">Full kitchen <b>from $80 a month</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="card-form" id="aplicar">
+      <div class="badge"><span class="es">Estimado sin costo</span><span class="en">Free estimate</span></div>
+      <h3><span class="es">Aplica y descubre si calificas</span><span class="en">Apply and see if you qualify</span></h3>
+      <p class="sub"><span class="es">Toma 60 segundos. Te contactamos con tus opciones de pago en menos de 24 horas.</span><span class="en">Takes 60 seconds. We contact you with your payment options within 24 hours.</span></p>
+
+      <form onsubmit="return sendForm(event)">
+        <div class="field">
+          <label><span class="es">Nombre completo</span><span class="en">Full name</span></label>
+          <input type="text" name="nombre" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label><span class="es">Teléfono</span><span class="en">Phone</span></label>
+          <input type="tel" name="telefono" required autocomplete="tel" placeholder="(555) 555-5555">
+        </div>
+        <div class="field">
+          <label><span class="es">Ciudad o código postal</span><span class="en">City or ZIP code</span></label>
+          <input type="text" name="zona" required autocomplete="postal-code">
+        </div>
+        <div class="field">
+          <label><span class="es">¿Qué quieres remodelar?</span><span class="en">What do you want to remodel?</span></label>
+          <select name="proyecto" required>
+            <option value=""    data-es="Selecciona una opción"      data-en="Select an option">Selecciona una opción</option>
+            <option value="cocina"      data-es="Cocina"                  data-en="Kitchen">Cocina</option>
+            <option value="bano"        data-es="Baño"                    data-en="Bathroom">Baño</option>
+            <option value="techo"       data-es="Techo (roofing)"         data-en="Roofing">Techo (roofing)</option>
+            <option value="ventanas"    data-es="Ventanas y HVAC"         data-en="Windows &amp; HVAC">Ventanas y HVAC</option>
+            <option value="exterior"    data-es="Exterior y landscaping"  data-en="Exterior &amp; landscaping">Exterior y landscaping</option>
+            <option value="pisos"       data-es="Pisos / concreto"        data-en="Flooring / concrete">Pisos / concreto</option>
+            <option value="pintura"     data-es="Pintura interior/exterior" data-en="Interior/exterior painting">Pintura interior/exterior</option>
+            <option value="completa"    data-es="Remodelación completa"   data-en="Full remodel">Remodelación completa</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-cta btn-block" style="margin-top:20px">
+          <span class="es">Ver si califico &rarr;</span><span class="en">See if I qualify &rarr;</span>
+        </button>
+      </form>
+      <p class="disclaimer">
+        <span class="es">Sin compromiso. Sujeto a aprobación de crédito; aplican condiciones.</span>
+        <span class="en">No obligation. Subject to credit approval; conditions apply.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFERTAS ================= -->
+<section class="offers">
+  <div class="offers-grid">
+    <div class="offer">
+      <div class="ico">🗓️</div>
+      <div>
+        <h3><span class="es">Empieza a pagar en 10 años</span><span class="en">Start paying in 10 years</span></h3>
+        <p><span class="es">Disfruta tu casa nueva ahora y difiere el primer pago. Programa de financiamiento directo.</span><span class="en">Enjoy your new home now and defer the first payment. Direct financing program.</span></p>
+      </div>
+    </div>
+    <div class="offer">
+      <div class="ico">💵</div>
+      <div>
+        <h3><span class="es">O desde $80 al mes</span><span class="en">Or from $80 a month</span></h3>
+        <p><span class="es">Cuotas fijas que entran en tu presupuesto, sin grandes costos iniciales.</span><span class="en">Fixed monthly payments that fit your budget, no big upfront cost.</span></p>
+      </div>
+    </div>
+    <div class="offer">
+      <div class="ico">🎁</div>
+      <div>
+        <h3><span class="es">Bono por tiempo limitado</span><span class="en">Limited-time bonus</span></h3>
+        <p><span class="es">Tu remodelación puede incluir una TV de 60&quot; o un paquete de electrodomésticos, sin costo extra.</span><span class="en">Your remodel may include a 60&quot; TV or an appliance package at no extra cost.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALIFICA ================= -->
+<section class="sec qual" id="califica">
+  <div class="wrap">
+    <div class="qual-box reveal center">
+      <span class="eyebrow"><span class="es">El programa</span><span class="en">The program</span></span>
+      <h2 class="mt-s"><span class="es">¿Calificas para el programa?</span><span class="en">Do you qualify for the program?</span></h2>
+      <p class="lead mt-s" style="max-width:44em;margin-left:auto;margin-right:auto">
+        <span class="es">No es para todos. El financiamiento diferido está reservado para propietarios que cumplen tres condiciones simples:</span>
+        <span class="en">It's not for everyone. Deferred financing is reserved for homeowners who meet three simple conditions:</span>
+      </p>
+      <div class="checks">
+        <div class="check"><div class="tick">✓</div><div>
+          <b><span class="es">Eres dueño de la casa</span><span class="en">You own the home</span></b>
+          <span class="es">La propiedad está a tu nombre, en California.</span><span class="en">The property is in your name, in California.</span>
+        </div></div>
+        <div class="check"><div class="tick">✓</div><div>
+          <b><span class="es">Es tu residencia principal</span><span class="en">It's your primary residence</span></b>
+          <span class="es">Vives ahí; no aplica a propiedades solo de inversión.</span><span class="en">You live there; investment-only properties don't apply.</span>
+        </div></div>
+        <div class="check"><div class="tick">✓</div><div>
+          <b><span class="es">Historial de crédito verificable</span><span class="en">Verifiable credit history</span></b>
+          <span class="es">Sujeto a aprobación. Revisamos tu caso sin costo.</span><span class="en">Subject to approval. We review your case at no cost.</span>
+        </div></div>
+      </div>
+      <a href="#aplicar" class="btn btn-cta mt-l"><span class="es">Aplicar y saber en 24 horas</span><span class="en">Apply and know within 24 hours</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRANSFORMACIONES ================= -->
+<section class="sec" id="transformaciones">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow"><span class="es">Antes y después</span><span class="en">Before &amp; after</span></span>
+      <h2 class="mt-s"><span class="es">Casas como la tuya, transformadas</span><span class="en">Homes like yours, transformed</span></h2>
+      <p class="lead mt-s" style="max-width:40em;margin:14px auto 0">
+        <span class="es">Arrastra la barra para ver el cambio real en cada proyecto.</span>
+        <span class="en">Drag the slider to see the real change in each project.</span>
+      </p>
+    </div>
+
+    <div class="cmp-tabs reveal" role="tablist">
+      <button class="cmp-tab" role="tab" aria-selected="true"  data-i="0"><span class="es">Cocina</span><span class="en">Kitchen</span></button>
+      <button class="cmp-tab" role="tab" aria-selected="false" data-i="1"><span class="es">Baño</span><span class="en">Bathroom</span></button>
+      <button class="cmp-tab" role="tab" aria-selected="false" data-i="2"><span class="es">Techo</span><span class="en">Roofing</span></button>
+      <button class="cmp-tab" role="tab" aria-selected="false" data-i="3"><span class="es">Exterior</span><span class="en">Exterior</span></button>
+      <button class="cmp-tab" role="tab" aria-selected="false" data-i="4"><span class="es">Ventanas y HVAC</span><span class="en">Windows &amp; HVAC</span></button>
+    </div>
+
+    <div class="cmp-stage reveal">
+      <div class="cmp" id="cmp">
+        <img id="cmp-before" src="img/cocina_antes.webp" alt="Antes de la remodelación" width="1400" height="933" loading="lazy">
+        <div class="after-wrap" id="cmp-clip">
+          <img id="cmp-after" src="img/cocina_after.webp" alt="Después de la remodelación" width="1400" height="933" loading="lazy">
+        </div>
+        <span class="tag tag-b"><span class="es">Antes</span><span class="en">Before</span></span>
+        <span class="tag tag-a"><span class="es">Después</span><span class="en">After</span></span>
+        <div class="handle"><div class="knob">⇄</div></div>
+      </div>
+      <div class="cmp-cap">
+        <b id="cmp-title">Cocina completa</b>
+        <span class="price" id="cmp-price"></span>
+      </div>
+    </div>
+    <p class="hint"><span class="es">👆 Desliza sobre la imagen</span><span class="en">👆 Swipe over the image</span></p>
+  </div>
+</section>
+
+<!-- ================= DOLOR ================= -->
+<section class="sec" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow"><span class="es">Por qué la gente posterga</span><span class="en">Why people postpone</span></span>
+      <h2 class="mt-s" style="max-width:20em;margin:10px auto 0">
+        <span class="es">No postergas por gusto. Postergas por miedo.</span>
+        <span class="en">You're not postponing by choice. You're postponing out of fear.</span>
+      </h2>
+    </div>
+    <div class="grid-3 mt-l reveal">
+      <div class="card"><div class="ico ico-red">💸</div>
+        <h3><span class="es">"No tengo el dinero junto"</span><span class="en">"I don't have the cash upfront"</span></h3>
+        <p><span class="es">Pedir $20,000 de una sola vez frena cualquier proyecto. Por eso existe el financiamiento diferido: empiezas la obra sin tocar tus ahorros.</span><span class="en">Paying $20,000 at once stops any project. That's why deferred financing exists: you start the work without touching your savings.</span></p>
+      </div>
+      <div class="card"><div class="ico ico-red">📈</div>
+        <h3><span class="es">"Me van a cobrar extras"</span><span class="en">"They'll charge me extras"</span></h3>
+        <p><span class="es">Cotizan barato, empiezan la obra y aparecen los "imprevistos". Nosotros firmamos precio cerrado antes de tocar tu casa.</span><span class="en">They quote low, start the job, then "unexpected costs" appear. We sign a fixed price before touching your home.</span></p>
+      </div>
+      <div class="card"><div class="ico ico-red">⏳</div>
+        <h3><span class="es">"Van a dejar la obra a medias"</span><span class="en">"They'll leave the job half done"</span></h3>
+        <p><span class="es">Semanas de polvo y gente que no aparece. Firmamos fecha de inicio y de entrega, y dejamos tu casa limpia.</span><span class="en">Weeks of dust and no-shows. We sign a start and finish date, and leave your home clean.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROMESA ================= -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow" style="color:#c9b6ff"><span class="es">La promesa SOCAL</span><span class="en">The SOCAL promise</span></span>
+      <h2 class="mt-s"><span class="es">Firmas tranquilo o no firmas</span><span class="en">Sign with confidence, or don't sign</span></h2>
+      <p class="lead mt-s" style="max-width:38em;margin:14px auto 0">
+        <span class="es">Todo lo que prometemos está escrito en el contrato. Nada depende de la palabra de nadie.</span>
+        <span class="en">Everything we promise is written in the contract. Nothing depends on anyone's word.</span>
+      </p>
+    </div>
+    <div class="grid-4 mt-l reveal">
+      <div class="card-dark"><div class="ico" style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:16px">🛡️</div>
+        <h3><span class="es">Precio cerrado</span><span class="en">Fixed price</span></h3>
+        <p><span class="es">Lo que firmas es lo que pagas. Cero sorpresas a mitad de obra.</span><span class="en">What you sign is what you pay. Zero mid-project surprises.</span></p></div>
+      <div class="card-dark"><div class="ico" style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:16px">📅</div>
+        <h3><span class="es">Fecha de entrega</span><span class="en">Completion date</span></h3>
+        <p><span class="es">Día de inicio y día de fin por escrito, antes de empezar.</span><span class="en">Start and finish dates in writing, before we begin.</span></p></div>
+      <div class="card-dark"><div class="ico" style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:16px">📄</div>
+        <h3><span class="es">Licencia y seguro</span><span class="en">Licensed &amp; insured</span></h3>
+        <p><span class="es">Contratista licenciado en California. Licencia CSLB #<span class="todo">PENDIENTE</span>.</span><span class="en">Licensed California contractor. CSLB License #<span class="todo">PENDING</span>.</span></p></div>
+      <div class="card-dark"><div class="ico" style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:16px">🧹</div>
+        <h3><span class="es">Te dejamos la casa limpia</span><span class="en">We leave your home clean</span></h3>
+        <p><span class="es">Retiramos escombros y limpiamos antes de irnos. Siempre.</span><span class="en">We haul debris and clean up before we leave. Always.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓMO FUNCIONA ================= -->
+<section class="sec" id="como">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow"><span class="es">Cómo funciona</span><span class="en">How it works</span></span>
+      <h2 class="mt-s"><span class="es">De aplicar a estrenar, en 4 pasos</span><span class="en">From applying to enjoying, in 4 steps</span></h2>
+    </div>
+    <div class="steps mt-l reveal" style="margin-top:56px">
+      <div class="step"><h3><span class="es">Aplicas online</span><span class="en">You apply online</span></h3>
+        <p><span class="es">60 segundos. Solo tu nombre, teléfono, zona y qué quieres remodelar.</span><span class="en">60 seconds. Just your name, phone, area and what you want to remodel.</span></p></div>
+      <div class="step"><h3><span class="es">Sabes si calificas</span><span class="en">You learn if you qualify</span></h3>
+        <p><span class="es">En menos de 24 horas te decimos tus opciones de pago reales.</span><span class="en">In under 24 hours we tell you your real payment options.</span></p></div>
+      <div class="step"><h3><span class="es">Estimado sin costo</span><span class="en">Free estimate</span></h3>
+        <p><span class="es">Visitamos tu casa, medimos y te damos precio cerrado por escrito.</span><span class="en">We visit your home, measure and give you a fixed written price.</span></p></div>
+      <div class="step"><h3><span class="es">Empezamos la obra</span><span class="en">We start the work</span></h3>
+        <p><span class="es">Con fecha de entrega firmada. Tú disfrutas; el primer pago llega después.</span><span class="en">With a signed completion date. You enjoy it; the first payment comes later.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICIOS ================= -->
+<section class="sec" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow"><span class="es">Servicios</span><span class="en">Services</span></span>
+      <h2 class="mt-s"><span class="es">Todo lo que podemos financiar</span><span class="en">Everything we can finance</span></h2>
+    </div>
+    <div class="srv mt-l reveal">
+      <a href="#aplicar"><span class="ico">🍳</span><span class="es">Cocinas</span><span class="en">Kitchens</span></a>
+      <a href="#aplicar"><span class="ico">🛁</span><span class="es">Baños</span><span class="en">Bathrooms</span></a>
+      <a href="#aplicar"><span class="ico">🏠</span><span class="es">Techos</span><span class="en">Roofing</span></a>
+      <a href="#aplicar"><span class="ico">🪟</span><span class="es">Ventanas</span><span class="en">Windows</span></a>
+      <a href="#aplicar"><span class="ico">❄️</span><span class="es">HVAC / Mini split</span><span class="en">HVAC / Mini split</span></a>
+      <a href="#aplicar"><span class="ico">🌿</span><span class="es">Landscaping</span><span class="en">Landscaping</span></a>
+      <a href="#aplicar"><span class="ico">🧱</span><span class="es">Pisos y concreto</span><span class="en">Flooring &amp; concrete</span></a>
+      <a href="#aplicar"><span class="ico">🎨</span><span class="es">Pintura int/ext</span><span class="en">Int/ext painting</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow"><span class="es">Clientes</span><span class="en">Clients</span></span>
+      <h2 class="mt-s"><span class="es">Lo que dicen los propietarios</span><span class="en">What homeowners say</span></h2>
+      <p class="hint" style="margin-top:12px"><span class="todo">⚠ Reemplazar por testimonios reales antes de publicar (nombre, ciudad y texto textual del cliente).</span></p>
+    </div>
+    <div class="grid-3 mt-l reveal">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p class="todo"><span class="es">[Testimonio real pendiente — cocina]</span><span class="en">[Real testimonial pending — kitchen]</span></p>
+        <footer><div class="av">?</div><div><b class="todo">Nombre</b><small class="todo">Ciudad, CA · Cocina</small></div></footer>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p class="todo"><span class="es">[Testimonio real pendiente — techo]</span><span class="en">[Real testimonial pending — roofing]</span></p>
+        <footer><div class="av">?</div><div><b class="todo">Nombre</b><small class="todo">Ciudad, CA · Techo</small></div></footer>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p class="todo"><span class="es">[Testimonio real pendiente — baño]</span><span class="en">[Real testimonial pending — bathroom]</span></p>
+        <footer><div class="av">?</div><div><b class="todo">Nombre</b><small class="todo">Ciudad, CA · Baño</small></div></footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" style="background:var(--paper-2)" id="faq">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="mt-s"><span class="es">Preguntas frecuentes</span><span class="en">Frequently asked questions</span></h2>
+    </div>
+    <div class="faq mt-l reveal">
+      <details class="q" open>
+        <summary style="list-style:none"><button type="button"><span><span class="es">¿De verdad empiezo a pagar en 10 años?</span><span class="en">Do I really start paying in 10 years?</span></span><span class="plus">+</span></button></summary>
+        <div class="a"><span class="es">Es un programa de financiamiento con pago diferido, sujeto a aprobación de crédito. Cuando apliques te confirmamos por escrito el plan exacto que te corresponde: pago diferido o cuotas desde $80 al mes.</span><span class="en">It's a deferred-payment financing program, subject to credit approval. When you apply we confirm in writing the exact plan available to you: deferred payment or installments from $80 a month.</span></div>
+      </details>
+      <details class="q">
+        <summary style="list-style:none"><button type="button"><span><span class="es">¿Cuánto cuesta el estimado?</span><span class="en">How much does the estimate cost?</span></span><span class="plus">+</span></button></summary>
+        <div class="a"><span class="es">Nada. Vamos a tu casa, medimos y te entregamos el precio cerrado por escrito, sin cargo y sin compromiso.</span><span class="en">Nothing. We come to your home, measure, and hand you a fixed written price at no charge and no obligation.</span></div>
+      </details>
+      <details class="q">
+        <summary style="list-style:none"><button type="button"><span><span class="es">¿Necesito buen crédito?</span><span class="en">Do I need good credit?</span></span><span class="plus">+</span></button></summary>
+        <div class="a"><span class="es">Revisamos cada caso. Hay más de una opción de financiamiento, así que vale la pena aplicar aunque creas que no calificas. Todo está sujeto a aprobación.</span><span class="en">We review every case. There is more than one financing option, so it's worth applying even if you think you don't qualify. Everything is subject to approval.</span></div>
+      </details>
+      <details class="q">
+        <summary style="list-style:none"><button type="button"><span><span class="es">¿Cómo obtengo la TV o los electrodomésticos?</span><span class="en">How do I get the TV or appliances?</span></span><span class="plus">+</span></button></summary>
+        <div class="a"><span class="es">Es una promoción por tiempo limitado sobre proyectos que califican. Al aprobar tu remodelación te confirmamos si tu proyecto incluye la TV de 60&quot; o el paquete de electrodomésticos.</span><span class="en">It's a limited-time promotion on qualifying projects. When your remodel is approved we confirm whether your project includes the 60&quot; TV or the appliance package.</span></div>
+      </details>
+      <details class="q">
+        <summary style="list-style:none"><button type="button"><span><span class="es">¿Cuánto tarda la obra?</span><span class="en">How long does the work take?</span></span><span class="plus">+</span></button></summary>
+        <div class="a"><span class="es">Depende del proyecto, pero la fecha de entrega queda firmada en el contrato antes de empezar. Un baño o un techo suelen ser cuestión de días; una cocina completa, algunas semanas.</span><span class="en">It depends on the project, but the completion date is signed into the contract before we start. A bathroom or a roof usually takes days; a full kitchen, a few weeks.</span></div>
+      </details>
+      <details class="q">
+        <summary style="list-style:none"><button type="button"><span><span class="es">¿Están licenciados y asegurados?</span><span class="en">Are you licensed and insured?</span></span><span class="plus">+</span></button></summary>
+        <div class="a"><span class="es">Sí. Somos contratista licenciado en California, licencia CSLB #<span class="todo">PENDIENTE</span>, con seguro de responsabilidad civil vigente.</span><span class="en">Yes. We are a licensed California contractor, CSLB License #<span class="todo">PENDING</span>, with active liability insurance.</span></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="sec final">
+  <div class="wrap final-grid">
+    <div class="reveal">
+      <h2><span class="es">Tu casa puede verse así este mes.</span><span class="en">Your home can look like this within the month.</span></h2>
+      <p class="lead mt-s"><span class="es">Aplica hoy, sin costo y sin compromiso. En menos de 24 horas sabes exactamente qué puedes remodelar y cuánto pagarías.</span><span class="en">Apply today, free and with no obligation. In under 24 hours you'll know exactly what you can remodel and what you'd pay.</span></p>
+      <ul>
+        <li><i>✓</i><span class="es">Empiezas a pagar en 10 años (o desde $80/mes)</span><span class="en">Start paying in 10 years (or from $80/month)</span></li>
+        <li><i>✓</i><span class="es">Estimado y visita sin costo</span><span class="en">Free estimate and home visit</span></li>
+        <li><i>✓</i><span class="es">Precio cerrado y fecha de entrega por contrato</span><span class="en">Fixed price and completion date by contract</span></li>
+        <li><i>✓</i><span class="es">Bono de TV 60&quot; o electrodomésticos por tiempo limitado</span><span class="en">60&quot; TV or appliance bonus, limited time</span></li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+        <a href="#aplicar" class="btn btn-cta"><span class="es">Aplicar ahora</span><span class="en">Apply now</span></a>
+        <a href="tel:+10000000000" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.4)">
+          <span class="es">Llamar al</span><span class="en">Call</span> <span class="todo">(000) 000-0000</span>
         </a>
-
-        <div class="hidden lg:flex items-center gap-8 text-gray-600 text-sm font-bold tracking-wide absolute left-1/2 transform -translate-x-1/2">
-            <a class="hover:text-primary transition-colors" href="#problema"><span class="lang-es">Promesa</span><span class="lang-en">Promise</span></a>
-            <a class="hover:text-primary transition-colors" href="#transformaciones"><span class="lang-es">Resultados</span><span class="lang-en">Results</span></a>
-            <a class="hover:text-primary transition-colors" href="#servicios"><span class="lang-es">Servicios</span><span class="lang-en">Services</span></a>
-        </div>
-
-        <div class="flex items-center ml-auto gap-2 sm:gap-3">
-            <div class="flex items-center bg-gray-100 p-0.5 sm:p-1 rounded-full border border-gray-200 shadow-inner">
-                <button id="lang-btn-es" onclick="switchLanguage('es')" class="px-2.5 py-1 rounded-full bg-earth-dark text-white font-extrabold shadow-md transition-all text-xs tracking-wider cursor-pointer">ES</button>
-                <button id="lang-btn-en" onclick="switchLanguage('en')" class="px-2.5 py-1 rounded-full text-gray-600 hover:text-earth-dark font-bold transition-all text-xs tracking-wider bg-transparent cursor-pointer">EN</button>
-            </div>
-            <a href="#contacto" class="flex bg-[#f97316] hover:bg-[#ea580c] text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-black transition-all transform hover:scale-105 shadow-2xl items-center gap-1.5 group border border-white/20 cursor-pointer">
-                <span><span class="lang-es">Cotizar Gratis</span><span class="lang-en">Free Quote</span></span>
-                <span class="material-symbols-outlined text-xs sm:text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
-            </a>
-        </div>
+      </div>
     </div>
-</nav>
-<section class="relative lg:min-h-[95vh] flex items-center pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <img alt="Renovación de casas" class="w-full h-full object-cover object-center" src="hero.jpg"/>
-        <div class="absolute inset-0 bg-gradient-to-r from-earth-dark/95 via-earth-dark/80 to-earth-dark/40"></div>
+    <div class="reveal" style="border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg)">
+      <img src="img/bano_after.webp" alt="Baño remodelado por SOCAL Home Solutions" width="1400" height="933" loading="lazy">
     </div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
-        <div class="text-white max-w-2xl">
-            <div class="inline-flex bg-green-500/20 backdrop-blur-md border border-green-400/50 text-green-300 px-4 py-1.5 rounded-full text-xs sm:text-sm font-extrabold mb-6 items-center gap-2 shadow-lg">
-                <span class="material-symbols-outlined text-base">real_estate_agent</span>
-                <span class="lang-es">Financiación Rápida Disponible</span>
-                <span class="lang-en">Fast Financing Available</span>
-            </div>
-            
-            <h1 class="font-heading text-[37px] sm:text-5xl lg:text-6xl font-black leading-[1.2] mb-6 tracking-tight drop-shadow-lg">
-                <span class="lang-es"><span class="block">Transforma tu</span><span class="block">Casa sin Estrés.</span><span class="text-primary block whitespace-nowrap">Págalo a tu Ritmo.</span></span>
-                <span class="lang-en"><span class="block">Transform Your</span><span class="block">Home Stress-Free.</span><span class="text-primary block whitespace-nowrap">Pay at your Pace.</span></span>
-            </h1>
-            
-            <p class="text-lg text-gray-200 mb-8 font-medium leading-relaxed max-w-xl">
-                <span class="lang-es">Obtén la remodelación de tus sueños con expertos licenciados en California. Precios cerrados, fechas exactas y opciones de pago mensuales.</span>
-                <span class="lang-en">Get the remodel of your dreams with licensed California experts. Fixed prices, exact dates, and monthly payment options.</span>
-            </p>
-            
-            <div class="flex items-center gap-4 text-sm font-bold">
-                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary">check_circle</span> <span class="lang-es">Licenciados</span><span class="lang-en">Licensed</span></div>
-                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary">check_circle</span> <span class="lang-es">+500 Remodelaciones</span><span class="lang-en">500+ Remodels</span></div>
-            </div>
-        </div>
-
-        <div class="w-full max-w-md ml-auto">
-            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-2xl relative border-t-4 border-primary">
-                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-earth-dark text-white text-[11px] sm:text-xs font-black uppercase tracking-wider px-6 py-2 rounded-full shadow-lg whitespace-nowrap">
-                    <span class="lang-es">Presupuesto Gratuito</span><span class="lang-en">Free Estimate</span>
-                </div>
-                <div class="text-center mt-3 mb-6">
-                    <p class="text-gray-600 text-sm font-bold leading-relaxed">
-                        <span class="lang-es">Cotiza tu proyecto y descubre tus opciones de <span class="font-extrabold text-primary">financiación en 24 horas</span>.</span>
-                        <span class="lang-en">Quote your project and discover your <span class="font-extrabold text-primary">financing options in 24 hours</span>.</span>
-                    </p>
-                </div>
-                <form action="#contacto" class="space-y-4">
-                    <div>
-                        <label class="block text-[11px] font-extrabold text-gray-700 mb-1 uppercase tracking-wider"><span class="lang-es">Nombre Completo</span><span class="lang-en">Full Name</span></label>
-                        <input data-es-label="Nombre Completo" data-en-label="Full Name" data-es-placeholder="Nombre Completo" data-en-placeholder="Full Name" placeholder="Nombre Completo" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary font-medium" required type="text"/>
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-extrabold text-gray-700 mb-1 uppercase tracking-wider"><span class="lang-es">Dirección de la Propiedad</span><span class="lang-en">Property Address</span></label>
-                        <input data-es-label="Dirección de la Propiedad" data-en-label="Property Address" data-es-placeholder="Dirección de la Propiedad" data-en-placeholder="Property Address" placeholder="Dirección de la Propiedad" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary font-medium" required type="text"/>
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-extrabold text-gray-700 mb-1 uppercase tracking-wider"><span class="lang-es">Teléfono</span><span class="lang-en">Phone Number</span></label>
-                        <input data-es-label="Teléfono" data-en-label="Phone Number" data-es-placeholder="Teléfono" data-en-placeholder="Phone Number" placeholder="Teléfono" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary font-medium" required type="tel"/>
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-extrabold text-gray-700 mb-1 uppercase tracking-wider"><span class="lang-es">¿Qué necesitas remodelar?</span><span class="lang-en">What do you need to remodel?</span></label>
-                        <select data-es-label="¿Qué necesitas remodelar?" data-en-label="What do you need to remodel?" class="w-full rounded-xl border-gray-300 bg-gray-50 p-3.5 text-sm focus:border-primary focus:ring-primary font-bold text-gray-700" required>
-                            <option value="" data-es-text="¿Qué necesitas remodelar?" data-en-text="What do you need to remodel?">¿Qué necesitas remodelar?</option>
-                            <option value="cocina" data-es-text="Cocina" data-en-text="Kitchen">Cocina</option>
-                            <option value="bano" data-es-text="Baño" data-en-text="Bathroom">Baño</option>
-                            <option value="techo" data-es-text="Techo (Roofing)" data-en-text="Roofing">Techo (Roofing)</option>
-                            <option value="piso" data-es-text="Pisos / Concreto" data-en-text="Flooring / Concrete">Pisos / Concreto</option>
-                            <option value="ventanas" data-es-text="Ventanas" data-en-text="Windows">Ventanas</option>
-                            <option value="landscaping" data-es-text="Landscaping" data-en-text="Landscaping">Landscaping</option>
-                            <option value="hvac" data-es-text="HVAC / Mini Split" data-en-text="HVAC / Mini Split">HVAC / Mini Split</option>
-                            <option value="pintura" data-es-text="Pintura Int/Ext" data-en-text="Int/Ext Painting">Pintura Int/Ext</option>
-                        </select>
-                    </div>
-                    <button class="w-full bg-[#f97316] hover:bg-[#ea580c] border border-white/20 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-2xl text-base flex justify-center items-center gap-2 mt-2 cursor-pointer" type="submit">
-                        <span class="whitespace-nowrap"><span class="lang-es">Cotizar Mi Proyecto Gratis</span><span class="lang-en">Get My Free Quote</span></span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="problema" class="py-20 bg-surface-container-highest border-b border-gray-200">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-earth-dark mb-12 leading-tight">
-            <span class="lang-es">Sabemos por qué los propietarios odian remodelar</span>
-            <span class="lang-en">We know why homeowners hate remodeling</span>
-        </h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100">
-                <div class="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="material-symbols-outlined text-2xl">request_quote</span>
-                </div>
-                <h3 class="font-bold text-lg mb-2"><span class="lang-es">Precios Engañosos</span><span class="lang-en">Deceptive Pricing</span></h3>
-                <p class="text-gray-500 text-sm"><span class="lang-es">Cotizan barato para ganar el trabajo, y a la mitad de la obra te cobran "extras" obligatorios.</span><span class="lang-en">They quote cheap to win the job, and halfway through charge mandatory "extras".</span></p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100">
-                <div class="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="material-symbols-outlined text-2xl">schedule</span>
-                </div>
-                <h3 class="font-bold text-lg mb-2"><span class="lang-es">Obras Interminables</span><span class="lang-en">Never-ending Projects</span></h3>
-                <p class="text-gray-500 text-sm"><span class="lang-es">Aparecen un día sí y tres no. Semanas con tu casa llena de polvo y escombros.</span><span class="lang-en">They show up one day and disappear for three. Weeks with your home full of dust.</span></p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100">
-                <div class="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="material-symbols-outlined text-2xl">handyman</span>
-                </div>
-                <h3 class="font-bold text-lg mb-2"><span class="lang-es">Baja Calidad</span><span class="lang-en">Poor Quality</span></h3>
-                <p class="text-gray-500 text-sm"><span class="lang-es">Terminaciones mediocres y materiales baratos que tendrás que reparar pronto.</span><span class="lang-en">Mediocre finishes and cheap materials you'll have to repair soon.</span></p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="py-20 bg-earth-dark text-white relative overflow-hidden">
-    <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 blur-3xl rounded-full"></div>
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-12">
-            <span class="text-primary font-bold tracking-widest uppercase text-xs mb-2 block">
-                <span class="lang-es">La Promesa SOCAL</span><span class="lang-en">The SOCAL Promise</span>
-            </span>
-            <h2 class="font-heading text-3xl sm:text-4xl font-black mb-4">
-                <span class="lang-es">Hacemos que remodelar sea un placer</span>
-                <span class="lang-en">We make remodeling a pleasure</span>
-            </h2>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg"><span class="lang-es">Firma con seguridad. Tu tranquilidad está garantizada por contrato.</span><span class="lang-en">Sign with confidence. Your peace of mind is guaranteed by contract.</span></p>
-        </div>
-        
-        <div class="grid md:grid-cols-3 gap-8 text-center">
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:border-primary hover:-translate-y-1.5 transition-all duration-300 shadow-xl flex flex-col items-center">
-                <div class="w-16 h-16 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <span class="material-symbols-outlined text-4xl">verified_user</span>
-                </div>
-                <h3 class="font-black text-xl mb-3 text-white"><span class="lang-es">Precio Cerrado</span><span class="lang-en">Fixed Price</span></h3>
-                <p class="text-gray-300 text-sm leading-relaxed"><span class="lang-es">Lo que firmamos es lo que pagas. Ni un centavo más en sorpresas o gastos ocultos.</span><span class="lang-en">What we sign is what you pay. Not a penny more in surprises or hidden costs.</span></p>
-            </div>
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:border-primary hover:-translate-y-1.5 transition-all duration-300 shadow-xl flex flex-col items-center">
-                <div class="w-16 h-16 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <span class="material-symbols-outlined text-4xl">event_available</span>
-                </div>
-                <h3 class="font-black text-xl mb-3 text-white"><span class="lang-es">Tiempos Exactos</span><span class="lang-en">Exact Timelines</span></h3>
-                <p class="text-gray-300 text-sm leading-relaxed"><span class="lang-es">Trabajamos rápido, limpio y nos vamos el día que prometimos irnos.</span><span class="lang-en">We work fast, clean, and leave on the exact day we promised to leave.</span></p>
-            </div>
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:border-primary hover:-translate-y-1.5 transition-all duration-300 shadow-xl flex flex-col items-center">
-                <div class="w-16 h-16 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <span class="material-symbols-outlined text-4xl">account_balance</span>
-                </div>
-                <h3 class="font-black text-xl mb-3 text-white"><span class="lang-es">Financiación Fácil</span><span class="lang-en">Easy Financing</span></h3>
-                <p class="text-gray-300 text-sm leading-relaxed"><span class="lang-es">Aprobación rápida, cuotas fijas y meses sin intereses para cuidar tu liquidez.</span><span class="lang-en">Fast approval, fixed payments, and interest-free months to protect your cash.</span></p>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="transformaciones" class="py-20 bg-surface-container border-y border-gray-200 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-10">
-            <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-earth-dark">
-                <span class="lang-es">Transformaciones Reales</span>
-                <span class="lang-en">Real Transformations</span>
-            </h2>
-            <p class="text-gray-500 mt-2 font-medium"><span class="lang-es">Desliza para ver el antes, el después y lo que opinan.</span><span class="lang-en">Swipe to see before, after, and what they say.</span></p>
-        </div>
-
-        <div class="relative">
-            <button onclick="prevSlide()" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-white text-earth-dark shadow-2xl border border-gray-200 items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer" aria-label="Anterior"><span class="material-symbols-outlined font-bold">arrow_back_ios_new</span></button>
-            <button onclick="nextSlide()" class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-white text-earth-dark shadow-2xl border border-gray-200 items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer" aria-label="Siguiente"><span class="material-symbols-outlined font-bold">arrow_forward_ios</span></button>
-
-            <div id="slider-container" class="flex overflow-hidden gap-6 pb-8 px-4 -mx-4 sm:mx-0 sm:px-0 select-none touch-pan-y" style="touch-action: pan-y;">
-                
-                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="grid grid-cols-2 h-48 sm:h-56">
-                        <div class="relative w-full h-full">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - COCINA]">
-                            <div class="absolute top-3 left-3 bg-red-500 text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">ANTES</div>
-                        </div>
-                        <div class="relative w-full h-full border-l-4 border-white">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN DESPUÉS - COCINA]">
-                            <div class="absolute top-3 left-3 bg-primary text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">DESPUÉS</div>
-                        </div>
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-between flex-1">
-                        <div>
-                            <div class="flex justify-between items-center mb-3">
-                                <h4 class="font-extrabold text-lg text-earth-dark"><span class="lang-es">Cocina de Ensueño</span><span class="lang-en">Dream Kitchen</span></h4>
-                                <div class="text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                            <p class="text-gray-600 italic text-sm mb-5 leading-relaxed">
-                                <span class="lang-es">"Teníamos miedo de los sobrecostos, pero respetaron el presupuesto inicial al 100%. La financiación nos salvó la vida. Súper limpios y rápidos."</span>
-                                <span class="lang-en">"We were afraid of cost overruns, but they respected the initial budget 100%. Financing saved our lives. Super clean and fast."</span>
-                            </p>
-                        </div>
-                        <div class="font-bold text-sm text-earth-dark">María González <span class="text-gray-400 font-normal ml-1">| San Diego</span></div>
-                    </div>
-                </div>
-
-                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="grid grid-cols-2 h-48 sm:h-56">
-                        <div class="relative w-full h-full">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - BAÑO]">
-                            <div class="absolute top-3 left-3 bg-red-500 text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">ANTES</div>
-                        </div>
-                        <div class="relative w-full h-full border-l-4 border-white">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN DESPUÉS - BAÑO]">
-                            <div class="absolute top-3 left-3 bg-primary text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">DESPUÉS</div>
-                        </div>
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-between flex-1">
-                        <div>
-                            <div class="flex justify-between items-center mb-3">
-                                <h4 class="font-extrabold text-lg text-earth-dark"><span class="lang-es">Baño Principal</span><span class="lang-en">Master Bathroom</span></h4>
-                                <div class="text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                            <p class="text-gray-600 italic text-sm mb-5 leading-relaxed">
-                                <span class="lang-es">"El baño era un desastre de los 90s. La cuadrilla llegó a tiempo todos los días y terminaron en la fecha exacta del contrato. Calidad de azulejos increíble."</span>
-                                <span class="lang-en">"The bathroom was a 90s disaster. The crew arrived on time every day and finished on the exact contract date. Incredible tile quality."</span>
-                            </p>
-                        </div>
-                        <div class="font-bold text-sm text-earth-dark">Juan Pérez <span class="text-gray-400 font-normal ml-1">| Los Angeles</span></div>
-                    </div>
-                </div>
-
-                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="grid grid-cols-2 h-48 sm:h-56">
-                        <div class="relative w-full h-full">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - ROOFING]">
-                            <div class="absolute top-3 left-3 bg-red-500 text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">ANTES</div>
-                        </div>
-                        <div class="relative w-full h-full border-l-4 border-white">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN DESPUÉS - ROOFING]">
-                            <div class="absolute top-3 left-3 bg-primary text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">DESPUÉS</div>
-                        </div>
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-between flex-1">
-                        <div>
-                            <div class="flex justify-between items-center mb-3">
-                                <h4 class="font-extrabold text-lg text-earth-dark"><span class="lang-es">Roofing de Emergencia</span><span class="lang-en">Emergency Roofing</span></h4>
-                                <div class="text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                            <p class="text-gray-600 italic text-sm mb-5 leading-relaxed">
-                                <span class="lang-es">"Llovía adentro de casa. SOCAL nos aprobó el crédito en minutos y teníamos techo nuevo en 3 días. Limpiaron todo el jardín antes de irse."</span>
-                                <span class="lang-en">"It was raining inside. SOCAL approved our credit in minutes and we had a new roof in 3 days. They cleaned the whole yard before leaving."</span>
-                            </p>
-                        </div>
-                        <div class="font-bold text-sm text-earth-dark">Sarah R. <span class="text-gray-400 font-normal ml-1">| Irvine</span></div>
-                    </div>
-                </div>
-
-                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="grid grid-cols-2 h-48 sm:h-56">
-                        <div class="relative w-full h-full">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - EXTERIOR]">
-                            <div class="absolute top-3 left-3 bg-red-500 text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">ANTES</div>
-                        </div>
-                        <div class="relative w-full h-full border-l-4 border-white">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN DESPUÉS - EXTERIOR]">
-                            <div class="absolute top-3 left-3 bg-primary text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">DESPUÉS</div>
-                        </div>
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-between flex-1">
-                        <div>
-                            <div class="flex justify-between items-center mb-3">
-                                <h4 class="font-extrabold text-lg text-earth-dark"><span class="lang-es">Exterior & Landscaping</span><span class="lang-en">Exterior & Landscaping</span></h4>
-                                <div class="text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                            <p class="text-gray-600 italic text-sm mb-5 leading-relaxed">
-                                <span class="lang-es">"Cambiaron todo el frente de la casa, el pasto y la pintura. Literalmente parece una propiedad nueva. Mis vecinos ya les pidieron presupuesto."</span>
-                                <span class="lang-en">"They changed the entire front of the house, grass, and paint. Literally looks like a new property. My neighbors already asked them for a quote."</span>
-                            </p>
-                        </div>
-                        <div class="font-bold text-sm text-earth-dark">Familia Thompson <span class="text-gray-400 font-normal ml-1">| Riverside</span></div>
-                    </div>
-                </div>
-
-                <div class="slide-item shrink-0 w-[90vw] sm:w-[500px] md:w-[600px] bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="grid grid-cols-2 h-48 sm:h-56">
-                        <div class="relative w-full h-full">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN ANTES - VENTANAS]">
-                            <div class="absolute top-3 left-3 bg-red-500 text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">ANTES</div>
-                        </div>
-                        <div class="relative w-full h-full border-l-4 border-white">
-                            <img src="" class="w-full h-full object-cover img-placeholder" alt="[INSERTE IMAGEN DESPUÉS - VENTANAS]">
-                            <div class="absolute top-3 left-3 bg-primary text-white text-[10px] sm:text-xs font-black px-2.5 py-1 rounded shadow">DESPUÉS</div>
-                        </div>
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-between flex-1">
-                        <div>
-                            <div class="flex justify-between items-center mb-3">
-                                <h4 class="font-extrabold text-lg text-earth-dark"><span class="lang-es">Ventanas & HVAC</span><span class="lang-en">Windows & HVAC</span></h4>
-                                <div class="text-yellow-400 text-sm">★★★★★</div>
-                            </div>
-                            <p class="text-gray-600 italic text-sm mb-5 leading-relaxed">
-                                <span class="lang-es">"Instalaron ventanas de eficiencia y un nuevo sistema mini split. Ya notamos la bajada enorme en la factura de luz. Excelente trabajo, muy ordenados."</span>
-                                <span class="lang-en">"Installed efficiency windows and a new mini split system. We already noticed the huge drop in the electric bill. Excellent work, very tidy."</span>
-                            </p>
-                        </div>
-                        <div class="font-bold text-sm text-earth-dark">David M. <span class="text-gray-400 font-normal ml-1">| Orange County</span></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-        <div class="flex flex-col items-center justify-center mt-2 gap-3">
-            <div class="flex items-center gap-2" aria-label="Paginación de testimonios">
-                <button onclick="scrollToSlide(1)" class="w-8 h-2.5 rounded-full bg-[#f97316] transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 1"></button>
-                <button onclick="scrollToSlide(2)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 2"></button>
-                <button onclick="scrollToSlide(3)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 3"></button>
-                <button onclick="scrollToSlide(4)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 4"></button>
-                <button onclick="scrollToSlide(5)" class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#f97316]/50 transition-all duration-300 pagination-dot cursor-pointer" aria-label="Testimonio 5"></button>
-            </div>
-            <div class="flex items-center gap-2 text-gray-400 font-bold text-xs">
-                <span class="material-symbols-outlined text-sm">swipe</span> 
-                <span class="lang-es">Desliza para ver las 5 obras y opiniones</span><span class="lang-en">Swipe to see all 5 projects and reviews</span>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="py-20 bg-surface" id="servicios">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-12">
-            <h2 class="font-heading text-3xl font-extrabold text-earth-dark mb-3">
-                <span class="lang-es">Todos los Servicios de SOCAL Home Solutions</span><span class="lang-en">All SOCAL Home Solutions Services</span>
-            </h2>
-            <p class="text-gray-600"><span class="lang-es">Todos califican para nuestros planes de financiación flexible.</span><span class="lang-en">All qualify for our flexible financing plans.</span></p>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='cocina'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">countertops</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Remodelación Cocinas</span><span class="lang-en">Kitchen Remodel</span></h3>
-            </div>
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='bano'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">bathtub</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Remodelación Baños</span><span class="lang-en">Bathroom Remodel</span></h3>
-            </div>
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='techo'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">roofing</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Roofing / Techos</span><span class="lang-en">Roofing</span></h3>
-            </div>
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='piso'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">foundation</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Concreto & Pisos</span><span class="lang-en">Concrete & Floors</span></h3>
-            </div>
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='ventanas'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">window</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Ventanas de Eficiencia</span><span class="lang-en">Efficient Windows</span></h3>
-            </div>
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='landscaping'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">yard</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Landscaping / Césped</span><span class="lang-en">Landscaping & Lawn</span></h3>
-            </div>
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='hvac'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">hvac</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">HVAC / Mini Split</span><span class="lang-en">HVAC / Mini Split</span></h3>
-            </div>
-            <div class="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary hover:shadow-lg transition-all text-center group cursor-pointer" onclick="document.querySelector('select').value='pintura'; document.querySelector('#contacto').scrollIntoView();">
-                <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-3 transition-colors">format_paint</span>
-                <h3 class="font-bold text-sm text-gray-800"><span class="lang-es">Pintura Int/Ext</span><span class="lang-en">Int/Ext Painting</span></h3>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="py-20 bg-white border-t border-gray-200" id="contacto">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-earth-dark mb-4">
-            <span class="lang-es">Inicia tu proyecto hoy mismo</span>
-            <span class="lang-en">Start your project today</span>
-        </h2>
-        <p class="text-lg text-gray-500 mb-10"><span class="lang-es">Pide tu presupuesto exacto y descubre tus opciones de <span class="font-extrabold text-primary">financiación en 24 horas</span>.</span><span class="lang-en">Request your exact quote and discover your <span class="font-extrabold text-primary">financing options in 24 hours</span>.</span></p>
-        
-        <div class="bg-surface-container-highest p-6 sm:p-10 rounded-3xl text-left shadow-inner border border-gray-300 max-w-xl mx-auto">
-            <form class="space-y-4">
-                <div>
-                    <label class="block text-[11px] font-extrabold text-gray-700 mb-1.5 uppercase tracking-wider"><span class="lang-es">Nombre Completo</span><span class="lang-en">Full Name</span></label>
-                    <input data-es-label="Nombre Completo" data-en-label="Full Name" data-es-placeholder="Nombre Completo" data-en-placeholder="Full Name" placeholder="Nombre Completo" class="w-full rounded-xl border-none p-4 text-sm focus:ring-2 focus:ring-primary font-medium shadow-sm" required type="text"/>
-                </div>
-                <div>
-                    <label class="block text-[11px] font-extrabold text-gray-700 mb-1.5 uppercase tracking-wider"><span class="lang-es">Teléfono</span><span class="lang-en">Phone Number</span></label>
-                    <input data-es-label="Teléfono" data-en-label="Phone Number" data-es-placeholder="Teléfono" data-en-placeholder="Phone Number" placeholder="Teléfono" class="w-full rounded-xl border-none p-4 text-sm focus:ring-2 focus:ring-primary font-medium shadow-sm" required type="tel"/>
-                </div>
-                <div>
-                    <label class="block text-[11px] font-extrabold text-gray-700 mb-1.5 uppercase tracking-wider"><span class="lang-es">Dirección de la Propiedad</span><span class="lang-en">Property Address</span></label>
-                    <input data-es-label="Dirección de la Propiedad" data-en-label="Property Address" data-es-placeholder="Dirección de la Propiedad" data-en-placeholder="Property Address" placeholder="Dirección de la Propiedad" class="w-full rounded-xl border-none p-4 text-sm focus:ring-2 focus:ring-primary font-medium shadow-sm" required type="text"/>
-                </div>
-                <div>
-                    <label class="block text-[11px] font-extrabold text-gray-700 mb-1.5 uppercase tracking-wider"><span class="lang-es">¿Qué vas a remodelar?</span><span class="lang-en">What will you remodel?</span></label>
-                    <select data-es-label="¿Qué vas a remodelar?" data-en-label="What will you remodel?" class="w-full rounded-xl border-none p-4 text-sm text-gray-700 font-bold focus:ring-2 focus:ring-primary shadow-sm" required>
-                        <option value="" data-es-text="¿Qué vas a remodelar?" data-en-text="What will you remodel?">¿Qué vas a remodelar?</option>
-                        <option value="cocina" data-es-text="Cocina" data-en-text="Kitchen">Cocina</option>
-                        <option value="bano" data-es-text="Baño" data-en-text="Bathroom">Baño</option>
-                        <option value="techo" data-es-text="Techo (Roofing)" data-en-text="Roofing">Techo (Roofing)</option>
-                        <option value="piso" data-es-text="Pisos / Concreto" data-en-text="Flooring / Concrete">Pisos / Concreto</option>
-                        <option value="ventanas" data-es-text="Ventanas" data-en-text="Windows">Ventanas</option>
-                        <option value="landscaping" data-es-text="Landscaping" data-en-text="Landscaping">Landscaping</option>
-                        <option value="hvac" data-es-text="HVAC" data-en-text="HVAC">HVAC</option>
-                        <option value="pintura" data-es-text="Pintura" data-en-text="Painting">Pintura</option>
-                    </select>
-                </div>
-                <button class="w-full bg-[#f97316] hover:bg-[#ea580c] border border-white/20 text-white font-black py-4 px-4 sm:px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-2xl text-base sm:text-lg flex items-center justify-center gap-2 mt-6 cursor-pointer" type="submit">
-                    <span class="whitespace-nowrap"><span class="lang-es">Cotizar Mi Proyecto Gratis</span><span class="lang-en">Get My Free Quote</span></span>
-                </button>
-            </form>
-        </div>
-    </div>
+  </div>
 </section>
 
-<section class="py-20 bg-surface-container-highest border-t border-gray-200" id="faq-section">
-    <div class="max-w-4xl mx-auto px-6">
-        <div class="text-center mb-12">
-            <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-earth-dark mb-3">
-                <span class="lang-es">Preguntas Frecuentes</span><span class="lang-en">Answering your questions</span>
-            </h2>
-            <p class="text-gray-600"><span class="lang-es">¿Tienes más dudas? Envíanos tu consulta arriba.</span><span class="lang-en">Got more questions? Send us your enquiry above.</span></p>
-        </div>
-
-        <div class="space-y-4">
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <button class="w-full px-6 py-5 text-left font-bold text-lg text-earth-dark flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFAQ(1)">
-                    <span class="lang-es">¿En qué área trabajan?</span><span class="lang-en">What area do you work?</span>
-                    <span class="material-symbols-outlined text-primary" id="faq-icon-1">add</span>
-                </button>
-                <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed hidden" id="faq-1">
-                    <span class="lang-es">Servimos a todo el sur de California. Sin importar dónde te encuentres en la región, lo haremos realidad.</span>
-                    <span class="lang-en">We serve all Southern California. No matter where you are, we will make it happen.</span>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <button class="w-full px-6 py-5 text-left font-bold text-lg text-earth-dark flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFAQ(2)">
-                    <span class="lang-es">¿Cuánto dura un proyecto típico?</span><span class="lang-en">How long does a typical project take?</span>
-                    <span class="material-symbols-outlined text-primary" id="faq-icon-2">add</span>
-                </button>
-                <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed hidden" id="faq-2">
-                    <span class="lang-es">Los tiempos varían dependiendo del alcance del trabajo. Siempre proporcionamos cronogramas claros antes de iniciar cualquier obra.</span>
-                    <span class="lang-en">Project timelines vary depending on the scope of work. We provide clear timelines before starting any work.</span>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <button class="w-full px-6 py-5 text-left font-bold text-lg text-earth-dark flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFAQ(3)">
-                    <span class="lang-es">¿Ofrecen presupuestos gratuitos?</span><span class="lang-en">Do you offer free quotes?</span>
-                    <span class="material-symbols-outlined text-primary" id="faq-icon-3">add</span>
-                </button>
-                <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed" id="faq-3">
-                    <span class="lang-es">¡Sí! Ofrecemos presupuestos gratuitos y sin compromiso. Tras la consulta inicial, evaluamos tus necesidades y damos un estimado detallado para que sepas exactamente qué esperar.</span>
-                    <span class="lang-en">Yes! We offer free, no-obligation quotes. After an initial consultation, we’ll assess your project needs and provide a detailed estimate so you know exactly what to expect.</span>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <button class="w-full px-6 py-5 text-left font-bold text-lg text-earth-dark flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFAQ(4)">
-                    <span class="lang-es">¿Proveen garantía por su trabajo?</span><span class="lang-en">Do you provide a guarantee for your work?</span>
-                    <span class="material-symbols-outlined text-primary" id="faq-icon-4">add</span>
-                </button>
-                <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed" id="faq-4">
-                    <span class="lang-es">¡Por supuesto! Respaldamos la calidad de nuestra artesanía y ofrecemos garantías para darte total tranquilidad. Las garantías específicas varían según el proyecto (pregúntanos por los detalles).</span>
-                    <span class="lang-en">Absolutely! We stand by the quality of our craftsmanship and offer guarantees on our work to give you peace of mind. Specific warranties may vary depending on the type of project—just ask us for details.</span>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <button class="w-full px-6 py-5 text-left font-bold text-lg text-earth-dark flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFAQ(5)">
-                    <span class="lang-es">¿SOCAL Home Solutions ofrece ayuda financiera?</span><span class="lang-en">Does SOCAL offer financial aid?</span>
-                    <span class="material-symbols-outlined text-primary" id="faq-icon-5">add</span>
-                </button>
-                <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed" id="faq-5">
-                    <span class="lang-es">¡Sí! Trabajamos con múltiples socios financieros para ofrecerte variadas opciones de financiación y ayudarte a encontrar la que mejor se adapte a tus necesidades.</span>
-                    <span class="lang-en">Yes, we do! We work with a range of financial partners to offer various financing options, helping you find the one that best suits your needs.</span>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <button class="w-full px-6 py-5 text-left font-bold text-lg text-earth-dark flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFAQ(6)">
-                    <span class="lang-es">¿Cómo empiezo con mi proyecto?</span><span class="lang-en">How do I get started with a project?</span>
-                    <span class="material-symbols-outlined text-primary" id="faq-icon-6">add</span>
-                </button>
-                <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed" id="faq-6">
-                    <span class="lang-es">¡Simplemente contáctanos! Arreglaremos una consulta para discutir tu visión, asesorar tu espacio y proveer consejo experto. Desde ahí, te daremos un presupuesto y un plan claro para avanzar.</span>
-                    <span class="lang-en">Simply get in touch! We’ll arrange a consultation to discuss your vision, assess your space, and provide expert advice. From there, we’ll give you a quote and a clear plan for moving forward.</span>
-                </div>
-            </div>
-        </div>
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brand" style="color:#fff"><img src="img/logo.webp" alt="" width="38" height="38"><span>SOCAL Home Solutions</span></div>
+        <p style="margin-top:14px;max-width:32em">
+          <span class="es">Remodelación residencial con financiamiento para propietarios de California. Contratista licenciado y asegurado.</span>
+          <span class="en">Residential remodeling with financing for California homeowners. Licensed and insured contractor.</span>
+        </p>
+      </div>
+      <div>
+        <h4><span class="es">Contacto</span><span class="en">Contact</span></h4>
+        <p><a href="tel:+10000000000" class="todo">(000) 000-0000</a></p>
+        <p style="margin-top:6px"><a href="mailto:info@ejemplo.com" class="todo">email@pendiente.com</a></p>
+        <p style="margin-top:6px" class="todo"><span class="es">Dirección / área de servicio</span><span class="en">Address / service area</span></p>
+      </div>
+      <div>
+        <h4><span class="es">Legal</span><span class="en">Legal</span></h4>
+        <p><span class="es">Licencia CSLB #</span><span class="en">CSLB License #</span><span class="todo">PENDIENTE</span></p>
+        <p style="margin-top:6px"><a href="#faq">FAQ</a></p>
+      </div>
     </div>
-</section>
-
-<footer class="bg-earth-dark py-12 text-center text-white">
-    <div class="max-w-3xl mx-auto px-6">
-        <h3 class="font-heading text-2xl font-bold mb-6">
-            <span class="lang-es">¿Prefieres hablar con un experto ahora?</span><span class="lang-en">Prefer to talk with an expert now?</span>
-        </h3>
-        <a href="tel:5551234567" class="inline-flex bg-[#f97316] border border-white/20 text-white hover:bg-white hover:text-[#f97316] font-extrabold px-8 py-4 rounded-full text-lg shadow-2xl transition-all items-center justify-center gap-3 hover:scale-105 cursor-pointer">
-            <span class="material-symbols-outlined text-2xl animate-pulse">phone_in_talk</span>
-            <span>(555) 123-4567</span>
-        </a>
-    </div>
+    <p class="legal">
+      <span class="es">© <span id="year"></span> SOCAL Home Solutions. Todos los derechos reservados. El financiamiento y los plazos de pago están sujetos a aprobación de crédito por parte del prestamista; aplican términos y condiciones. Las promociones son por tiempo limitado y aplican solo a proyectos que califican. Las imágenes de "después" en cocina y baño son recreaciones digitales del resultado del proyecto.</span>
+      <span class="en">© <span id="year2"></span> SOCAL Home Solutions. All rights reserved. Financing and payment terms are subject to lender credit approval; terms and conditions apply. Promotions are limited-time and apply only to qualifying projects. The kitchen and bathroom "after" images are digital recreations of the project result.</span>
+    </p>
+  </div>
 </footer>
+
+<!-- ================= BARRA MÓVIL ================= -->
+<div class="sticky-cta">
+  <a href="tel:+10000000000" class="btn btn-ghost">📞 <span class="es">Llamar</span><span class="en">Call</span></a>
+  <a href="#aplicar" class="btn btn-cta"><span class="es">Ver si califico</span><span class="en">See if I qualify</span></a>
+</div>
+
+<script>
+/* ---------- idioma ---------- */
+function setLang(l){
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.setAttribute('lang',l);
+  document.getElementById('b-es').setAttribute('aria-pressed', l==='es');
+  document.getElementById('b-en').setAttribute('aria-pressed', l==='en');
+  document.querySelectorAll('option[data-es]').forEach(o=>{o.textContent=o.getAttribute('data-'+l)});
+  renderCmp();
+}
+
+/* ---------- comparador antes/después ---------- */
+const PROJECTS=[
+  {b:'img/cocina_antes.webp',  a:'img/cocina_after.webp',  es:'Cocina completa',        en:'Full kitchen',        pes:'desde $80/mes',  pen:'from $80/mo'},
+  {b:'img/bano_antes.webp',    a:'img/bano_after.webp',    es:'Baño completo',          en:'Full bathroom',       pes:'financiado',     pen:'financed'},
+  {b:'img/roofing_antes.webp', a:'img/roofing_after.webp', es:'Techo nuevo (roofing)',  en:'New roof',            pes:'financiado',     pen:'financed'},
+  {b:'img/exterior_antes.webp',a:'img/exterior_after.webp',es:'Exterior y landscaping', en:'Exterior & landscaping',pes:'financiado',   pen:'financed'},
+  {b:'img/ventanas_antes.webp',a:'img/ventanas_after.webp',es:'Ventanas y HVAC',        en:'Windows & HVAC',      pes:'financiado',     pen:'financed'}
+];
+let cur=0, pos=50;
+const clip=document.getElementById('cmp-clip');
+const cmp=document.getElementById('cmp');
+const handle=cmp.querySelector('.handle');
+
+function renderCmp(){
+  const p=PROJECTS[cur], l=document.documentElement.getAttribute('data-lang');
+  document.getElementById('cmp-before').src=p.b;
+  document.getElementById('cmp-after').src=p.a;
+  document.getElementById('cmp-title').textContent=l==='es'?p.es:p.en;
+  document.getElementById('cmp-price').textContent=l==='es'?p.pes:p.pen;
+}
+function setPos(v){
+  pos=Math.max(2,Math.min(98,v));
+  clip.style.clipPath='inset(0 0 0 '+pos+'%)';
+  handle.style.left=pos+'%';
+}
+function fromEvent(e){
+  const r=cmp.getBoundingClientRect();
+  const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+  setPos(x/r.width*100);
+}
+let dragging=false;
+cmp.addEventListener('pointerdown',e=>{dragging=true;cmp.setPointerCapture(e.pointerId);fromEvent(e)});
+cmp.addEventListener('pointermove',e=>{if(dragging)fromEvent(e)});
+cmp.addEventListener('pointerup',()=>{dragging=false});
+cmp.addEventListener('pointercancel',()=>{dragging=false});
+
+document.querySelectorAll('.cmp-tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.cmp-tab').forEach(x=>x.setAttribute('aria-selected','false'));
+    t.setAttribute('aria-selected','true');
+    cur=+t.dataset.i; renderCmp(); setPos(50);
+  });
+});
+renderCmp(); setPos(50);
+
+/* auto-demo del handle la primera vez que entra en pantalla */
+let demoed=false;
+new IntersectionObserver((en,ob)=>{
+  en.forEach(x=>{
+    if(x.isIntersecting && !demoed){
+      demoed=true;
+      let v=50,dir=-1,steps=0;
+      const t=setInterval(()=>{
+        v+=dir*2; steps++;
+        if(v<=28){dir=1} if(v>=72){dir=-1}
+        setPos(v);
+        if(steps>60){clearInterval(t);setPos(50)}
+      },16);
+      ob.disconnect();
+    }
+  });
+},{threshold:.4}).observe(cmp);
+
+/* ---------- FAQ ---------- */
+document.querySelectorAll('.q button').forEach(b=>{
+  b.addEventListener('click',e=>{
+    e.preventDefault();
+    const d=b.closest('details');
+    document.querySelectorAll('.q').forEach(x=>{if(x!==d)x.open=false});
+    d.open=!d.open;
+  });
+});
+
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(en=>{en.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- form ---------- */
+/* TODO: conectar destino real de leads (email / CRM / WhatsApp) */
+function sendForm(e){
+  e.preventDefault();
+  const f=e.target;
+  const btn=f.querySelector('button[type=submit]');
+  btn.textContent=document.documentElement.getAttribute('data-lang')==='es'
+    ? '✓ ¡Listo! Te contactamos en menos de 24 h'
+    : '✓ Done! We’ll contact you within 24 h';
+  btn.style.background='#1f8a5b';
+  btn.disabled=true;
+  return false;
+}
+
+document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById('year2').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
